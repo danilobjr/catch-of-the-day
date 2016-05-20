@@ -1,5 +1,5 @@
 .app {
-    display: flex;
+    @include display(flex);
     height: 90vh;
     max-width: 1500px;
     margin: 5vh auto;
