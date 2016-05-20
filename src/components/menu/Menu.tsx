@@ -1,7 +1,8 @@
 import * as React from 'react';
+import { Section } from './../common';
 
 export class Menu extends React.Component<any, any> {
     render() {
-        return <section>Menu</section>;
+        return <Section>Menu</Section>;
     }
 }

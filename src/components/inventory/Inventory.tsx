@@ -1,7 +1,8 @@
 import * as React from 'react';
+import { Section } from './../common';
 
 export class Inventory extends React.Component<any, any> {
     render() {
-        return <section>Inventory</section>;
+        return <Section>Inventory</Section>;
     }
 }
