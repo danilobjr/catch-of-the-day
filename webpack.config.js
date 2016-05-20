@@ -1,13 +1,13 @@
 const _ = require('lodash');
 
 const commonConfig = {
-    entry: './src/index.ts',
+    entry: './src/index.tsx',
     output: {
         path: './build',
         filename: 'app.bundle.js'
     },
     resolve: {
-        extensions: ['', '.ts', '.tsx']
+        extensions: ['', '.ts', '.tsx', '.js']
     },
     module: {
         loaders: [
