@@ -1,0 +1,19 @@
+{
+  "name": "catchoftheday-wesbos-course",
+  "version": "1.0.0",
+  "description": "Web app made with React and Typescript following Wes Bos course React for Beginners",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "http://tst.app.com"
+  },
+  "keywords": [
+    "react",
+    "typescript"
+  ],
+  "author": "Danilo Barros <danilobjr@gmail.com>",
+  "license": "MIT"
+}
