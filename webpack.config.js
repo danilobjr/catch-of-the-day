@@ -1,4 +1,6 @@
-module.exports = {
+const _ = require('lodash');
+
+const commonConfig = {
     entry: './src/index.ts',
     output: {
         path: './build',
@@ -16,3 +18,15 @@ module.exports = {
         ]
     }
 };
+
+const target = process.env.npm_lifecycle_event;
+
+if (target === 'start' || !target) {
+    const devConfig = {
+        devServer: {
+            contentBase: './build'
+        }
+    };
+    
+    module.exports = _.merge(commonConfig, devConfig);
+}

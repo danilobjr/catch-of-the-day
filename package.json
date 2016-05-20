@@ -4,6 +4,7 @@
   "description": "Web app made with React and Typescript following Wes Bos course React for Beginners",
   "main": "index.js",
   "scripts": {
+    "start": "webpack-dev-server",
     "build": "webpack"
   },
   "repository": {
@@ -21,5 +22,8 @@
     "typescript": "^1.8.10",
     "webpack": "^1.13.1",
     "webpack-dev-server": "^1.14.1"
+  },
+  "dependencies": {
+    "lodash": "^4.12.0"
   }
 }
