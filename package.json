@@ -17,6 +17,8 @@
   "author": "Danilo Barros <danilobjr@gmail.com>",
   "license": "MIT",
   "devDependencies": {
+    "ts-loader": "^0.8.2",
+    "typescript": "^1.8.10",
     "webpack": "^1.13.1",
     "webpack-dev-server": "^1.14.1"
   }

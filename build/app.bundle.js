@@ -42,10 +42,22 @@
 /************************************************************************/
 /******/ ([
 /* 0 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	var message_1 = __webpack_require__(1);
+	document.getElementById('app').innerText = message_1.sayHelloTo('John');
+
+
+/***/ },
+/* 1 */
 /***/ function(module, exports) {
 
-	const appContainer = document.getElementById('app');
-	appContainer.innerText = 'Hello';
+	"use strict";
+	exports.sayHelloTo = function (personName) {
+	    return "Hello, " + personName;
+	};
+
 
 /***/ }
 /******/ ]);
