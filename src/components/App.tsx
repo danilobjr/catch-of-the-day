@@ -1,7 +1,16 @@
 import * as React from 'react';
+import { Menu } from './menu';
+import { Order } from './order';
+import { Inventory } from './inventory';
 
 export class App extends React.Component<any, any> {
     render() {
-        return <h1>App component</h1>;
+        return (
+            <div className="app">
+                <Menu />
+                <Order />                
+                <Inventory />
+            </div>
+        );
     }
 }
