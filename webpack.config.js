@@ -23,6 +23,15 @@ const target = process.env.npm_lifecycle_event;
 
 if (target === 'start' || !target) {
     const devConfig = {
+        module: {
+            preLoaders: [
+                {
+                    text: /\.js$/,
+                    loader: 'source-map'
+                }
+            ]
+        },
+        devtool: 'source-map',
         devServer: {
             contentBase: './build'
         }
