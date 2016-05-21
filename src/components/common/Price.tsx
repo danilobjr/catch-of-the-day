@@ -1,15 +1,8 @@
 import * as React from 'react';
 import { Currency } from './Currency';
 
-enum PriceSize {
-    small,
-    normal
-}
-
 interface IProps {
     value: number;
-    size?: PriceSize;
-    bold?: boolean;
     className?: string;
 }
 
