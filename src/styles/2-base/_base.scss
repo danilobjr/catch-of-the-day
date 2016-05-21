@@ -41,6 +41,17 @@ figure {
     background-position: center;
 }
 
+input, textarea, select {
+    padding: 10px;
+    font-size: 12px;
+    border: $border-base;
+    
+    &:focus {
+        background-color: #fef2de;
+        outline: none;
+    }
+}
+
 button {
     font-weight: 600;
     text-transform: uppercase;
