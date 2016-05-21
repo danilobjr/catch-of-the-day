@@ -1,3 +1,15 @@
 body {
+    font-family: $base-font;
     background-color: $body-bg-color;
+}
+
+h1 {
+    font-size: 54px;
+}
+
+h3 {
+    color: $orange;
+    font-size: 22px;
+    font-weight: lighter;
+    line-height: 18px;
 }
