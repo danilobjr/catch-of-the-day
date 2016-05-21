@@ -1,0 +1,25 @@
+button {
+    position: relative;
+    z-index: 2;
+    
+    &:after {
+        content: '';
+        display: block;
+        position: absolute;
+        width: 100%;
+        height: 0;
+        left: 0;
+        top: 0;
+        background-color: black;
+        z-index: -1;
+        @include make-transition-for-property(height);
+    }
+    
+    &:hover {
+        background: none;
+    }
+    
+    &:hover:after {
+        height: 100%;
+    }
+}

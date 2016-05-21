@@ -40,3 +40,17 @@ figure {
     background-size: cover;    
     background-position: center;
 }
+
+button {
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: -1px;
+    cursor: pointer;
+    background-color: transparent;
+    border: 1px solid black;
+    
+    &:hover {
+        color: white;
+        background-color: $black;
+    }
+}

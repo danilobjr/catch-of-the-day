@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Header } from './../common';
+import { Header, Button } from './../common';
 import { MenuImage } from './MenuImage';
 
 export class MenuItem extends React.Component<any, any> {
@@ -12,8 +12,8 @@ export class MenuItem extends React.Component<any, any> {
                 <div>
                     <Header>Menu Item</Header>
                     <p>Item description</p>
+                    <Button text="Add to Order" />
                     {/*
-                    <AddToOrderButton />
                     <Price value={2500} />
                     */}
                 </div>
