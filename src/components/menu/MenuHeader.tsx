@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-export class Header extends React.Component<any, any> {
+export class MenuHeader extends React.Component<any, any> {
     render() {
         return (
             <header className="menu-header">
