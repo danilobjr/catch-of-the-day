@@ -14,7 +14,7 @@ export class MenuItem extends React.Component<any, any> {
                     <Header>Menu Item</Header>
                     <p>Item description</p>
                     <Button text="Add to Order" />
-                    <MenuPrice value={2500} />
+                    <MenuPrice value={25} />
                 </div>
             </li>
         );
