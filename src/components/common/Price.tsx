@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { Currency } from './Currency';
 
 enum PriceSize {
     small,
@@ -14,7 +15,7 @@ interface IProps {
 
 export class Price extends React.Component<IProps, any> {
     render() {
-        return <span className={this.getClassName()}>{this.formatValue()}</span>;
+        return <Currency className={this.getClassName()} value={this.props.value} />;
     }
     
     getClassName(): string {
@@ -23,9 +24,5 @@ export class Price extends React.Component<IProps, any> {
         this.props.className && classes.push(this.props.className);
         
         return classes.join(' ');
-    }
-    
-    formatValue(): string {
-        return this.props.value.toString();
     }
 }
