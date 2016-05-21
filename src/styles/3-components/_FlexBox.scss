@@ -1,0 +1,7 @@
+.flex-container {
+    @include display(flex);
+    
+    & > * {
+        @include flex(1);
+    }
+}
