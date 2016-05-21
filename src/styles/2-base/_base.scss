@@ -49,8 +49,12 @@ button {
     background-color: transparent;
     border: 1px solid black;
     
-    &:hover {
+    &:hover, &:focus {
         color: white;
         background-color: $black;
+    }
+    
+    &:focus {
+        outline: none;        
     }
 }
