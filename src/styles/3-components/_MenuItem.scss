@@ -12,6 +12,7 @@
     
     & > div:last-of-type {
         flex: 1;
+        position: relative;
         
         & > * {
             margin: 0 0 10px 0;

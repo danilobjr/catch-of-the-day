@@ -1,0 +1,4 @@
+.menu-price {
+    @include position(absolute, 0 0 null null);
+    line-height: 14px;
+}
