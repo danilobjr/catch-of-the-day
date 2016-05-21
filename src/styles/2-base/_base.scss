@@ -3,6 +3,13 @@ body {
     background-color: $body-bg-color;
 }
 
+section {
+    padding: 20px;
+    background-color: white;
+    border: 10px double $black;
+    overflow-y: auto;
+}
+
 h1 {
     font-size: 54px;
 }
