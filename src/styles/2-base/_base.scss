@@ -58,7 +58,7 @@ button {
     letter-spacing: -1px;
     cursor: pointer;
     background-color: transparent;
-    border: 1px solid black;
+    border: $border-base;
     
     &:hover, &:focus {
         color: white;

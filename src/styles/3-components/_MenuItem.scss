@@ -2,8 +2,9 @@
     display: flex;
     padding: 15px 0;
     margin-bottom: 5px;    
-    border-top: 1px solid $black;
-    border-bottom: 2px solid $black;
+    border-top: $border-base;
+    border-bottom: $border-base;
+    border-bottom-width: 2px;
     
     & > div:first-of-type {
         height: 120px;
