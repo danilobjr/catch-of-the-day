@@ -9,7 +9,7 @@ export class InventoryList extends React.Component<any, any> {
                 <InventoryListItem />
                 <InventoryListItem />
                 <InventoryListItem />
-                <InventoryListItem />
+                <InventoryListItem isAddBox />
             </ul>
         );
     }
