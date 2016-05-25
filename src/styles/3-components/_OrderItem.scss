@@ -1,0 +1,13 @@
+.order-item {
+    display: flex;
+    padding: 20px 0;
+    border-bottom: 1px solid $black;
+    
+    .fish-name {
+        flex: 1;
+    }
+    
+    span {
+        margin-left: 3px;
+    }
+}
