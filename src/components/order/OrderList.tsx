@@ -1,9 +1,9 @@
 import * as React from 'react';
 
 export class OrderList extends React.Component<any, any> {
-    methodName() {
+    render() {
         return (
-            <ul>
+            <ul className="order-list">
                 <li className="order-item">
                     <span>2</span>
                     <span>lbs</span>
