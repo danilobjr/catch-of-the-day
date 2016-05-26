@@ -2,19 +2,26 @@ import * as React from 'react';
 import { Header, Button } from './../common';
 import { MenuImage } from './MenuImage';
 import { MenuPrice } from './MenuPrice';
+import { IFish } from './../../models';
 
-export class MenuItem extends React.Component<any, any> {
+interface IProps {
+    fish: IFish;
+}
+
+export class MenuItem extends React.Component<IProps, any> {
     render() {
-        return (
+        const { fish } = this.props;
+        
+        return (            
             <li className="menu-item">
                 <div>
-                    <MenuImage url="http://prazeresdamesa.uol.com.br/wordpress/wp-content/uploads/arquivos/imagem_10833.jpg" />
+                    <MenuImage url={fish.imageUrl} />
                 </div>
                 <div>
-                    <Header>Menu Item</Header>
-                    <p>Item description</p>
+                    <Header>{fish.name}</Header>
+                    <p>{fish.description}</p>
                     <Button text="Add to Order" />
-                    <MenuPrice value={25} />
+                    <MenuPrice value={fish.price} />
                 </div>
             </li>
         );
