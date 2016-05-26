@@ -6,14 +6,17 @@ import { IFish } from './../../models';
 
 interface IProps {
     items: IFish[];
+    onClickAddToOrderButton: (fishItem: IFish) => void;
 }
 
 export class Menu extends React.Component<IProps, any> {
     render() {
+        const { items, onClickAddToOrderButton } = this.props;
+        
         return (
             <Section>
                 <MenuHeader />
-                <MenuList items={this.props.items} />
+                <MenuList items={items} onClickAddToOrderButton={onClickAddToOrderButton} />
             </Section>
         );
     }

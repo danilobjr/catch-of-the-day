@@ -4,6 +4,7 @@ import { IFish } from './../../models';
 
 interface IProps {
     items: IFish[];
+    onClickAddToOrderButton: (fishItem: IFish) => void;
 }
 
 export class MenuList extends React.Component<IProps, any> {
@@ -12,6 +13,14 @@ export class MenuList extends React.Component<IProps, any> {
     }
     
     renderMenuItems() {
-        return this.props.items.map(item => <MenuItem key={item.id} fish={item} />);
+        const { items, onClickAddToOrderButton } = this.props;
+        
+        return items.map(item => 
+            <MenuItem 
+                key={item.id} 
+                fish={item} 
+                onClickAddToOrderButton={onClickAddToOrderButton} 
+            />
+        );
     }
 }

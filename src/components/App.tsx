@@ -26,10 +26,14 @@ export class App extends React.Component<any, IState> {
     render() {
         return (
             <div className="app">
-                <Menu items={this.state.fishs} />
+                <Menu items={this.state.fishs} onClickAddToOrderButton={this.addFishItemToOrder} />
                 <Order />                
                 <Inventory />
             </div>
         );
+    }
+    
+    addFishItemToOrder = (fishItem: IFish) : void => {
+        console.log(fishItem);
     }
 }

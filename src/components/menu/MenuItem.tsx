@@ -6,6 +6,7 @@ import { IFish } from './../../models';
 
 interface IProps {
     fish: IFish;
+    onClickAddToOrderButton: (fishItem: IFish) => void;
 }
 
 export class MenuItem extends React.Component<IProps, any> {
@@ -20,10 +21,14 @@ export class MenuItem extends React.Component<IProps, any> {
                 <div>
                     <Header>{fish.name}</Header>
                     <p>{fish.description}</p>
-                    <Button text="Add to Order" />
+                    <Button text="Add to Order" onClick={this.onClickAddToOrderButton} />
                     <MenuPrice value={fish.price} />
                 </div>
             </li>
         );
+    }
+    
+    onClickAddToOrderButton = (): void => {
+        this.props.onClickAddToOrderButton(this.props.fish);
     }
 }
