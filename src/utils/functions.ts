@@ -25,3 +25,5 @@ export const map = (mapperFunc: Function) => (array: any[]) =>
         accumulator.push(mapperFunc(current));
         return accumulator;
     }, []);
+
+export const head = (array: any[]) => array[0]
