@@ -32,7 +32,7 @@ export class App extends React.Component<any, IState> {
         return (
             <div className="app">
                 <Menu items={this.state.fishs} onClickAddToOrderButton={this.addFishItemToOrder} />
-                <Order items={this.state.fishsInOrder} />
+                <Order items={this.state.fishsInOrder} onClickRemoveItem={this.removeFishFromOrder} />
                 <Inventory />
             </div>
         );
@@ -40,6 +40,13 @@ export class App extends React.Component<any, IState> {
     
     addFishItemToOrder = (fishItem: IFish) : void => {
         const fishsInOrder = [...this.state.fishsInOrder, fishItem];
+        const newState = _.assign({}, this.state, { fishsInOrder }) as IState;
+        
+        this.setState(newState);
+    }
+    
+    removeFishFromOrder = (fishId: string): void => {
+        const fishsInOrder = this.state.fishsInOrder.filter(fish => fish.id !== fishId);
         const newState = _.assign({}, this.state, { fishsInOrder }) as IState;
         
         this.setState(newState);

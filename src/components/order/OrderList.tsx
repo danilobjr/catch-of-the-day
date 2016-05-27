@@ -6,6 +6,7 @@ import * as _ from 'lodash';
 
 interface IProps {
     items: IFish[];
+    onClickRemoveItem: (fishId: string) => void;
 }
 
 export class OrderList extends React.Component<IProps, any> {
@@ -14,8 +15,16 @@ export class OrderList extends React.Component<IProps, any> {
     }
     
     renderOrderItems(items: IFish[]) {
+        const { onClickRemoveItem } = this.props;
+        
         const toOrderItemModel = (fishs: IFish[]): IOrderItem => _.assign({}, head(fishs), { count: fishs.length }) as IOrderItem
-        const toOrderItemComponent = (orderItem: IOrderItem): JSX.Element => <OrderItem key={orderItem.id} item={orderItem} />
+        const toOrderItemComponent = (orderItem: IOrderItem): JSX.Element => 
+            <OrderItem 
+                key={orderItem.id} 
+                item={orderItem} 
+                onClickRemoveItem={onClickRemoveItem} 
+            />
+            
         const toComponent = compose(toOrderItemComponent, toOrderItemModel);
         
         return compose(map(toComponent), groupSame)(items);
