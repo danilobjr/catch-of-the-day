@@ -11,13 +11,13 @@ interface IProps {
 
 export class Order extends React.Component<IProps, any> {
     render() {
-        const { onClickRemoveItem } = this.props;
+        const { items, onClickRemoveItem } = this.props;
         
         return (
             <Section>
                 <SectionHeader>Your Order</SectionHeader>                
-                <OrderList items={this.props.items} onClickRemoveItem={onClickRemoveItem} />
-                <OrderTotal />
+                <OrderList items={items} onClickRemoveItem={onClickRemoveItem} />
+                <OrderTotal items={items} />
             </Section>
         );
     }
