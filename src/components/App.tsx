@@ -1,4 +1,5 @@
 import * as React from 'react';
+import * as _ from 'lodash';
 import { Menu } from './menu';
 import { Order } from './order';
 import { Inventory } from './inventory';
@@ -7,6 +8,7 @@ import { IFish } from './../models';
 
 interface IState {
     fishs: IFish[];
+    fishsInOrder: IFish[];
 }
 
 export class App extends React.Component<any, IState> {
@@ -14,26 +16,32 @@ export class App extends React.Component<any, IState> {
         super(props);
     
         this.state = {
-            fishs: []
+            fishs: [],
+            fishsInOrder: []
         };
     }
     
-    componentDidMount() {
+    componentWillMount() {
         const fishs = [...dataSource.fishs.getAll()];
-        this.setState({ fishs });
+        const newState = _.assign({}, this.state, { fishs }) as IState;
+        
+        this.setState(newState);
     }
     
     render() {
         return (
             <div className="app">
                 <Menu items={this.state.fishs} onClickAddToOrderButton={this.addFishItemToOrder} />
-                <Order />                
+                <Order items={this.state.fishsInOrder} />
                 <Inventory />
             </div>
         );
     }
     
     addFishItemToOrder = (fishItem: IFish) : void => {
-        console.log(fishItem);
+        const fishsInOrder = [...this.state.fishsInOrder, fishItem];
+        const newState = _.assign({}, this.state, { fishsInOrder }) as IState;
+        
+        this.setState(newState);
     }
 }
