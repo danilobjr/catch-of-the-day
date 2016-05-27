@@ -1,22 +1,21 @@
 import * as React from 'react';
-import { IFish } from './../../models';
+import { IOrderItem } from './../../models';
 import { Price } from './../common';
 
 interface IProps {
-    item: IFish;
-    count: number;
+    item: IOrderItem;
 }
 
 export class OrderItem extends React.Component<IProps, any> {
     render() {
-        const { item, count } = this.props;
+        const { item } = this.props;
         
         return (
             <li className="order-item">
-                <span>{count}</span>
+                <span>{item.count}</span>
                 <span>lbs</span>
                 <span className="fish-name">{item.name}</span>
-                <span><Price value={item.price * count} /></span>
+                <span><Price value={item.price * item.count} /></span>
             </li>
         );
     }

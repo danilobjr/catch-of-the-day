@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { OrderItem } from './OrderItem';
-import { IFish } from './../../models';
-import { compose, groupSame, map } from './../../utils/functions';
+import { IFish, IOrderItem } from './../../models';
+import { compose, groupSame, map, head } from './../../utils/functions';
 import * as _ from 'lodash';
 
 interface IProps {
@@ -14,7 +14,10 @@ export class OrderList extends React.Component<IProps, any> {
     }
     
     renderOrderItems(items: IFish[]) {
-        const toOrderItem = (fishs: IFish[]) => <OrderItem key={fishs[0].id} item={fishs[0]} count={fishs.length} />        
-        return compose(map(toOrderItem), groupSame)(items);
+        const toOrderItemModel = (fishs: IFish[]): IOrderItem => _.assign({}, head(fishs), { count: fishs.length }) as IOrderItem
+        const toOrderItemComponent = (orderItem: IOrderItem): JSX.Element => <OrderItem key={orderItem.id} item={orderItem} />
+        const toComponent = compose(toOrderItemComponent, toOrderItemModel);
+        
+        return compose(map(toComponent), groupSame)(items);
     }
 }
