@@ -3,11 +3,16 @@
     padding: 20px 0;
     border-bottom: 1px solid $black;
     
-    .fish-name {
+    > span,
+    > .icon-button {
+        margin-left: 3px;
+    }
+    
+    > .fish-name {
         flex: 1;
     }
     
-    span {
-        margin-left: 3px;
+    > .icon-button {
+        font-size: 14px;
     }
 }
