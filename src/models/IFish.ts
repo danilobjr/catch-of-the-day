@@ -5,4 +5,5 @@ export interface IFish extends IEntity {
     description?: string;
     price: number;
     imageUrl: string;
+    available: boolean;
 }
