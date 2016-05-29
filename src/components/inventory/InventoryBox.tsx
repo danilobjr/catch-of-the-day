@@ -1,7 +1,7 @@
 import * as React from 'react';
 import * as _ from 'lodash';
 import { Button, FlexBox } from './../common';
-import { IFish } from './../../models';
+import { IFish, FishFactory } from './../../models';
 
 interface IProps {
     fishItem?: IFish;
@@ -21,14 +21,7 @@ export class InventoryBox extends React.Component<IProps, IState> {
     
     static get defaultProps() {
         const defaultProps = {
-            fishItem: {
-                id: '',
-                name: '',
-                description: '',
-                price: 0,
-                imageUrl: '',
-                available: true
-            },
+            fishItem: FishFactory.create(),
             buttonText: '+ Add Item'
         };
         
@@ -66,19 +59,6 @@ export class InventoryBox extends React.Component<IProps, IState> {
         );
     }
     
-    getEmptyFishModel() {
-        const emptyFishModel: IFish = {
-            id: '',
-            name: '',
-            description: '',
-            price: 0,
-            imageUrl: '',
-            available: true
-        };
-        
-        return emptyFishModel;
-    }
-    
     updateStateOnInputChange(propertyName: string, value: any): void {
         const newState = _.assign({}, this.state, { [propertyName]: value }) as IState;
         console.log(newState);
@@ -87,6 +67,6 @@ export class InventoryBox extends React.Component<IProps, IState> {
     
     onClickButton = () : void => {
         this.props.onClickButton(this.state);
-        this.setState(this.getEmptyFishModel());
+        this.setState(FishFactory.create());
     }
 }
