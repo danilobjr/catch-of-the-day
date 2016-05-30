@@ -1,6 +1,16 @@
-body {
+body, #main {
+    height: 100vh;
+}
+
+body {    
     font-family: $base-font;
     background-color: $body-bg-color;
+}
+
+#main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 section {
