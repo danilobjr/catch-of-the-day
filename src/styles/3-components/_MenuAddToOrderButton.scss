@@ -1,0 +1,18 @@
+.add-to-order {
+    margin: 0 !important;
+    @include make-transition-for-property(all);
+    
+    &.sold-out {
+        position: absolute;
+        color: $red;
+        border-color: $red;
+        border-width: 2px;
+        background-color: #fff;
+        cursor: not-allowed;
+        @include transform(rotateZ(-12deg) scale(1.6) translate(50%,-50%));
+        
+        &.sold-out:hover:after {
+            height: 0;
+        }
+    }
+}
