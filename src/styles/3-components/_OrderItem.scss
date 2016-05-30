@@ -5,6 +5,34 @@
     
     @include make-transition();
     
+    > .count {
+        position: relative;
+        width: 15px;
+        max-height: 18px;        
+        overflow: hidden;
+        
+        div {
+            position: absolute;
+            @include make-transition($speed: fast);
+            
+            &.animation-count-enter {
+                @include transform(translateY(100%));
+                
+                &.animation-count-enter-active {
+                    @include transform(translateY(0));
+                }
+            }
+            
+            &.animation-count-leave {
+                @include transform(translateY(0));
+                
+                &.animation-count-leave-active {
+                    @include transform(translateY(-100%));
+                }
+            }
+        }
+    }
+    
     > span,
     > .icon-button {
         margin-left: 3px;
@@ -40,5 +68,5 @@
             padding: 0;
             @include transform(translateX(110%));
         }
-    }
+    }    
 }

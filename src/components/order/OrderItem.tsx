@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { IOrderItem } from './../../models';
-import { Price, IconButton } from './../common';
+import { Price, IconButton, Animation } from './../common';
 
 interface IProps {
     item: IOrderItem;
@@ -13,7 +13,11 @@ export class OrderItem extends React.Component<IProps, any> {
         
         return (
             <li className="order-item">
-                <span>{item.count}</span>
+                <div className="count">
+                    <Animation transitionName="animation-count">
+                        <div key={item.count}>{item.count}</div>
+                    </Animation>
+                </div>
                 <span>lbs</span>
                 <span className="fish-name">{item.name}</span>
                 <span><Price value={item.price * item.count} /></span>
