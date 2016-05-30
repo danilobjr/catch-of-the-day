@@ -1,3 +1,4 @@
+import { Animation } from './Animation';
 import { Section } from './Section';
 import { SectionHeader } from './SectionHeader';
 import { Header } from './Header';
@@ -7,6 +8,7 @@ import { Price } from './Price';
 import { FlexBox } from './FlexBox';
 
 export {
+    Animation,
     Section,
     SectionHeader,
     Header,
