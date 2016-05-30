@@ -1,6 +1,6 @@
 import * as React from 'react';
 import * as _ from 'lodash';
-import * as ReactCssTransitionGroup from 'react-addons-css-transition-group';
+import { Animation } from './../common';
 import { OrderItem } from './OrderItem';
 import { IFish, IOrderItem } from './../../models';
 import { compose, groupSame, map, head } from './../../utils/functions';
@@ -14,9 +14,9 @@ export class OrderList extends React.Component<IProps, any> {
     render() {
         return (
             <ul className="order-list">
-                <ReactCssTransitionGroup transitionName="animation-items" transitionEnterTimeout={500} transitionLeaveTimeout={500}>
+                <Animation transitionName="animation-items">
                     {this.renderOrderItems(this.props.items)}
-                </ReactCssTransitionGroup>
+                </Animation>
             </ul>
         );
     }
