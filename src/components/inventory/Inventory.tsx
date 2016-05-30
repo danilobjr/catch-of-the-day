@@ -7,6 +7,7 @@ interface IProps {
     items: IFish[];
     onClickAddFish: (fish: IFish) => void;
     onClickRemoveFish: (fishId: string) => void;
+    onUpdateFishData: (updatedFish: IFish) => void;
 }
 
 export class Inventory extends React.Component<IProps, any> {
@@ -18,6 +19,7 @@ export class Inventory extends React.Component<IProps, any> {
                     items={this.props.items}
                     onClickAddFish={this.props.onClickAddFish}
                     onClickRemoveFish={this.props.onClickRemoveFish}
+                    onUpdateFishData={this.props.onUpdateFishData}
                 />
             </Section>
         );

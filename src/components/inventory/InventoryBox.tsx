@@ -6,7 +6,8 @@ import { IFish, FishFactory } from './../../models';
 interface IProps {
     fishItem?: IFish;
     buttonText?: string;
-    onClickButton: (fishData: IFish) => void;
+    onClickButton: (newFishData: IFish) => void;
+    onUpdateData?: (fishUpdated: IFish) => void;
 }
 
 interface IState extends IFish {    
@@ -60,9 +61,9 @@ export class InventoryBox extends React.Component<IProps, IState> {
     }
     
     updateStateOnInputChange(propertyName: string, value: any): void {
-        const newState = _.assign({}, this.state, { [propertyName]: value }) as IState;
-        console.log(newState);
+        const newState = _.assign({}, this.state, { [propertyName]: value }) as IState;        
         this.setState(newState);
+        this.props.onUpdateData(newState);
     }
     
     onClickButton = () : void => {

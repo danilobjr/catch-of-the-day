@@ -38,6 +38,7 @@ export class App extends React.Component<any, IState> {
                     items={this.state.fishs} 
                     onClickAddFish={this.addNewFishToInventory} 
                     onClickRemoveFish={this.removeFishFromInventory}
+                    onUpdateFishData={this.updateFish}
                 />
             </div>
         );
@@ -83,5 +84,25 @@ export class App extends React.Component<any, IState> {
         this.setState(newState);
         
         dataSource.fishs.remove(fishId);
+    }
+    
+    updateFish = (updatedFish: IFish): void => {        
+        const index = this.state.fishs.findIndex(f => f.id === updatedFish.id);
+        const fishs = [
+            ...this.state.fishs.slice(0, index),
+            _.assign({}, updatedFish),
+            ...this.state.fishs.slice(index + 1)
+        ];
+        
+        let fishsInOrder = this.state.fishsInOrder.map(fish => {
+            if (fish.id === updatedFish.id) {
+                fish = _.assign({}, fish, updatedFish) as IFish;
+            }
+            
+            return fish;
+        });
+        
+        const newState = _.assign({}, this.state, { fishs, fishsInOrder }) as IState;
+        this.setState(newState);
     }
 }
