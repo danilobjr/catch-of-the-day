@@ -1,6 +1,7 @@
 import { IDataCollections } from './IDataCollections';
 import { IRepository } from './IRepository';
 import { IEntity } from './IEntity';
+import * as uuid from 'node-uuid';
 
 export class RepositoryGeneric<T extends IEntity> implements IRepository<T> {
     private collection: T[] = null;
@@ -9,38 +10,51 @@ export class RepositoryGeneric<T extends IEntity> implements IRepository<T> {
         this.collection = dataCollections[collectionName] as T[];
     }
     
-    getAll(): T[] {        
-        return this.collection;
+    getAll(): Promise<T[]> {
+        return new Promise<T[]>(resolve => resolve(this.collection));
     }
     
-    get(id: string): T {
-        return this.collection.find(entity => entity.id === id);
+    get(id: string): Promise<T> {
+        return new Promise<T>(resolve => resolve(this.collection.find(entity => entity.id === id)));
     }
     
-    add(entity: T): void {
+    add(entity: T): Promise<string> {
         let { dataCollections, collectionName, collection } = this;
         
-        dataCollections[collectionName] = [...collection, entity];
+        return new Promise<string>(resolve => {
+            const id = uuid.v1();
+            entity.id = id;
+            dataCollections[collectionName] = [...collection, entity];
+            resolve(id);
+        });
     }
     
-    remove(id: string): void {
+    remove(id: string): Promise<void> {        
         let { dataCollections, collectionName, collection } = this;
         const index = collection.findIndex(entity => entity.id === id);
         
-        dataCollections[collectionName] = [
-            ...collection.slice(0, index),
-            ...collection.slice(index + 1)
-        ];
+        return new Promise<void>(resolve => {            
+            dataCollections[collectionName] = [
+                ...collection.slice(0, index),
+                ...collection.slice(index + 1)
+            ];
+            
+            resolve();
+        });
     }
     
-    edit(entity: T): void {
+    edit(entity: T): Promise<void> {
         let { dataCollections, collectionName, collection } = this;
         const index = collection.findIndex(e => e.id === entity.id);
         
-        dataCollections[collectionName] = [
-            ...collection.slice(0, index),
-            entity,
-            ...collection.slice(index + 1)
-        ];
+        return new Promise<void>(resolve => {            
+            dataCollections[collectionName] = [
+                ...collection.slice(0, index),
+                entity,
+                ...collection.slice(index + 1)
+            ];
+            
+            resolve();
+        });
     }
 }
