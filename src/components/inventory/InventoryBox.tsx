@@ -63,7 +63,8 @@ export class InventoryBox extends React.Component<IProps, IState> {
     updateStateOnInputChange(propertyName: string, value: any): void {
         const newState = _.assign({}, this.state, { [propertyName]: value }) as IState;        
         this.setState(newState);
-        this.props.onUpdateData(newState);
+        
+        this.props.onUpdateData && this.props.onUpdateData(newState);
     }
     
     onClickButton = () : void => {
