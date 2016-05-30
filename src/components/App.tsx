@@ -57,16 +57,20 @@ export class App extends React.Component<any, IState> {
     }
     
     addNewFishToInventory = (newFish: IFish) : void => {
-        console.warn('TODO: make dataSource methods return a promise');
-        console.warn('TODO: optimistic update with client-side id and then update state with the real "back-end" id');
         const tempId = uuid.v4();
         newFish.id = tempId;
-        
         const fishs = [...this.state.fishs, newFish];
-        const newState = _.assign({}, this.state, { fishs }) as IState;
         
+        const newState = _.assign({}, this.state, { fishs }) as IState;        
         this.setState(newState);
         
-        dataSource.fishs.add(newFish);
+        dataSource.fishs.add(newFish).then(definitiveDbId => {
+            const others = this.state.fishs.filter(fish => fish.id !== tempId);
+            const updatedFish = _.assign({}, newFish, { id: definitiveDbId });
+            const fishs = [...others, updatedFish];
+            
+            const newState = _.assign({}, this.state, { fishs }) as IState;
+            this.setState(newState);
+        });
     }
 }
