@@ -43,9 +43,7 @@ export class App extends React.Component<any, IState> {
     }
     
     addFishItemToOrder = (fishItem: IFish) : void => {
-        const { fishsInOrder } = this.state;
-        
-        fishsInOrder.push(fishItem);
+        const fishsInOrder = [fishItem, ...this.state.fishsInOrder];
         const newState = _.assign({}, this.state, { fishsInOrder }) as IState;
         
         this.setState(newState);
