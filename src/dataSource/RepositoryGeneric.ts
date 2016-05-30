@@ -23,7 +23,7 @@ export class RepositoryGeneric<T extends IEntity> implements IRepository<T> {
         
         return new Promise<string>(resolve => {
             const id = uuid.v1();
-            entity.id = id;
+            entity = _.assign({}, entity, { id }) as T;
             dataCollections[collectionName] = [...collection, entity];
             resolve(id);
         });
