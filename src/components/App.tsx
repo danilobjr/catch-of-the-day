@@ -22,7 +22,7 @@ export class App extends React.Component<any, IState> {
         };
     }
     
-    componentWillMount() {
+    componentDidMount() {
         dataSource.fishs.getAll().then(fishs => {            
             const newState = _.assign({}, this.state, { fishs }) as IState;            
             this.setState(newState);
