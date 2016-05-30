@@ -1,8 +1,9 @@
 import * as React from 'react';
+import * as _ from 'lodash';
+import * as ReactCssTransitionGroup from 'react-addons-css-transition-group';
 import { OrderItem } from './OrderItem';
 import { IFish, IOrderItem } from './../../models';
 import { compose, groupSame, map, head } from './../../utils/functions';
-import * as _ from 'lodash';
 
 interface IProps {
     items: IFish[];
@@ -11,7 +12,13 @@ interface IProps {
 
 export class OrderList extends React.Component<IProps, any> {
     render() {
-        return <ul className="order-list">{this.renderOrderItems(this.props.items)}</ul>;
+        return (
+            <ul className="order-list">
+                <ReactCssTransitionGroup transitionName="animation-items" transitionEnterTimeout={500} transitionLeaveTimeout={500}>
+                    {this.renderOrderItems(this.props.items)}
+                </ReactCssTransitionGroup>
+            </ul>
+        );
     }
     
     renderOrderItems(items: IFish[]) {

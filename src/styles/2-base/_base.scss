@@ -8,6 +8,7 @@ section {
     background-color: white;
     border: 10px double $black;
     overflow-y: auto;
+    overflow-x: hidden;
 }
 
 h1 {
