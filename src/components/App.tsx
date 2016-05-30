@@ -23,10 +23,10 @@ export class App extends React.Component<any, IState> {
     }
     
     componentWillMount() {
-        const fishs = [...dataSource.fishs.getAll()];
-        const newState = _.assign({}, this.state, { fishs }) as IState;
-        
-        this.setState(newState);
+        dataSource.fishs.getAll().then(fishs => {            
+            const newState = _.assign({}, this.state, { fishs }) as IState;            
+            this.setState(newState);
+        });
     }
     
     render() {
