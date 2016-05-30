@@ -12,7 +12,7 @@ button {
         top: 0;
         background-color: black;
         z-index: -1;
-        @include make-transition-for-property(height);
+        @include make-transition(height);
     }
     
     &:hover {

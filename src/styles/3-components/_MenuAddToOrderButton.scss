@@ -1,6 +1,6 @@
 .add-to-order {
     margin: 0 !important;
-    @include make-transition-for-property(all);
+    @include make-transition();
     
     &.sold-out {
         position: absolute;

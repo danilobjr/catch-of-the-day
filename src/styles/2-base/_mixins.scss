@@ -1,3 +1,13 @@
-@mixin make-transition-for-property($property: all) {
-    @include transition($property 150ms ease-out 0s);
+@mixin make-transition($property: all, $speed: normal, $start-delay: 0s) {
+    $animation-duration: 0s;
+    
+    @if $speed == fast {
+        $animation-duration: 250ms;
+    } @else if $speed == normal {
+        $animation-duration: 500ms;
+    } @else if $speed == slow {
+        $animation-duration: 750ms;
+    }
+    
+    @include transition($property $animation-duration cubic-bezier(.23,.59,.29,.99) $start-delay);
 }
