@@ -5,6 +5,7 @@ import { IFish } from './../../models';
 interface IProps {
     items: IFish[];
     onClickAddFish: (fish: IFish) => void;
+    onClickRemoveFish: (fishId: string) => void;
 }
 
 export class InventoryList extends React.Component<IProps, any> {
@@ -22,12 +23,16 @@ export class InventoryList extends React.Component<IProps, any> {
             <InventoryListItem 
                 key={fishItem.id} 
                 item={fishItem} 
-                onClickButton={() => console.warn('TODO: remove fish from inventory')} 
+                onClickButton={this.onClickRemoveFish}
             />
         );
     }
     
     onClickAddFish = (fish: IFish) : void => {
         this.props.onClickAddFish(fish);
+    }
+    
+    onClickRemoveFish = (fish: IFish): void => {
+        this.props.onClickRemoveFish(fish.id);
     }
 }

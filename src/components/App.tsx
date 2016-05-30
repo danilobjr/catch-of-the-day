@@ -37,6 +37,7 @@ export class App extends React.Component<any, IState> {
                 <Inventory 
                     items={this.state.fishs} 
                     onClickAddFish={this.addNewFishToInventory} 
+                    onClickRemoveFish={this.removeFishFromInventory}
                 />
             </div>
         );
@@ -72,5 +73,15 @@ export class App extends React.Component<any, IState> {
             const newState = _.assign({}, this.state, { fishs }) as IState;
             this.setState(newState);
         });
+    }
+    
+    removeFishFromInventory = (fishId: string): void => {
+        const others = this.state.fishs.filter(fish => fish.id !== fishId);
+        const fishs = [...others];
+                
+        const newState = _.assign({}, this.state, { fishs }) as IState;        
+        this.setState(newState);
+        
+        dataSource.fishs.remove(fishId);
     }
 }
