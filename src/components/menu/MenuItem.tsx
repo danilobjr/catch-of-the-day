@@ -1,8 +1,9 @@
 import * as React from 'react';
-import { Header, Button } from './../common';
+import { Header } from './../common';
+import { IFish } from './../../models';
 import { MenuImage } from './MenuImage';
 import { MenuPrice } from './MenuPrice';
-import { IFish } from './../../models';
+import { MenuAddToOrderButton } from './MenuAddToOrderButton';
 
 interface IProps {
     fish: IFish;
@@ -21,14 +22,20 @@ export class MenuItem extends React.Component<IProps, any> {
                 <div>
                     <Header>{fish.name}</Header>
                     <p>{fish.description}</p>
-                    <Button text="Add to Order" onClick={this.onClickAddToOrderButton} />
+                    <MenuAddToOrderButton text="Add to Order" showSoldOutLabel={this.isFishSold()} onClick={this.onClickAddToOrderButton} />
                     <MenuPrice value={fish.price} />
                 </div>
             </li>
         );
     }
     
+    isFishSold(): boolean {
+        return !this.props.fish.available;
+    }
+    
     onClickAddToOrderButton = (): void => {
-        this.props.onClickAddToOrderButton(this.props.fish);
+        if (this.props.fish.available) {
+            this.props.onClickAddToOrderButton(this.props.fish);
+        }
     }
 }
