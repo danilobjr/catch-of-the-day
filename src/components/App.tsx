@@ -1,6 +1,7 @@
 import * as React from 'react';
 import * as _ from 'lodash';
 import * as uuid from 'node-uuid';
+import { Button } from './common';
 import { Menu } from './menu';
 import { Order } from './order';
 import { Inventory } from './inventory';
@@ -10,6 +11,7 @@ import { IFish } from './../models';
 interface IState {
     fishs: IFish[];
     fishsInOrder: IFish[];
+    isFoldedUp: boolean;
 }
 
 export class App extends React.Component<any, IState> {
@@ -18,7 +20,8 @@ export class App extends React.Component<any, IState> {
     
         this.state = {
             fishs: [],
-            fishsInOrder: []
+            fishsInOrder: [],
+            isFoldedUp: false
         };
     }
     
@@ -30,16 +33,21 @@ export class App extends React.Component<any, IState> {
     }
     
     render() {
+        const { isFoldedUp } = this.state;
+        
         return (
-            <div className="app">
-                <Menu items={this.state.fishs} onClickAddToOrderButton={this.addFishItemToOrder} />
-                <Order items={this.state.fishsInOrder} onClickRemoveItem={this.removeFishFromOrder} />
-                <Inventory 
-                    items={this.state.fishs} 
-                    onClickAddFish={this.addNewFishToInventory} 
-                    onClickRemoveFish={this.removeFishFromInventory}
-                    onUpdateFishData={this.updateFish}
-                />
+            <div className={this.getCssClasses()}>
+                <div className="content">
+                    <Menu items={this.state.fishs} onClickAddToOrderButton={this.addFishItemToOrder} />
+                    <Order items={this.state.fishsInOrder} onClickRemoveItem={this.removeFishFromOrder} />
+                    <Inventory 
+                        items={this.state.fishs} 
+                        onClickAddFish={this.addNewFishToInventory} 
+                        onClickRemoveFish={this.removeFishFromInventory}
+                        onUpdateFishData={this.updateFish}
+                    />
+                </div>
+                <Button className="fold-button" text="Fold" onClick={this.toggleFoldPerspective} />
             </div>
         );
     }
@@ -104,5 +112,16 @@ export class App extends React.Component<any, IState> {
         
         const newState = _.assign({}, this.state, { fishs, fishsInOrder }) as IState;
         this.setState(newState);
+    }
+    
+    toggleFoldPerspective = () => {
+        const isFoldedUp = !this.state.isFoldedUp;
+        const newState = _.assign({}, this.state, { isFoldedUp }) as IState;
+        this.setState(newState);
+    }
+    
+    getCssClasses(): string {
+        const { isFoldedUp } = this.state;
+        return `app ${isFoldedUp ? 'foldedUp' : ''}`.trim();
     }
 }

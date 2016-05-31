@@ -1,5 +1,61 @@
 .app {
-    @include display(flex);
     height: 90vh;
     max-width: 1500px;
+    
+    > .content {
+        @include display(flex);
+        height: inherit;
+        perspective: 1000px;
+        
+        > section {
+            @include make-transition(transform);
+        }
+        
+        > section:first-child {
+            transform-origin: right;
+        }
+        
+        > section:nth-child(2) {
+            transform-origin: left;
+        }
+        
+        > section:last-child {
+            transform-origin: center;
+        }
+    }
+    
+    > .fold-button {
+        @include position(absolute, 10px null null 10px);
+        padding: 5px 10px;
+        color: white;
+        font-size: 0.9rem;
+        font-weight: normal;
+        background-color: $black;
+        border-width: 2px;
+        
+        &:after {
+            content: none;
+        }
+    }
+    
+    &.foldedUp {
+        .fold-button {
+            color: $black;
+            background-color: white;
+        }
+        
+        > .content {            
+            > section:first-child {
+                transform: rotateY(5deg);
+            }
+            
+            > section:nth-child(2) {
+                transform: rotateY(-10deg);
+            }
+            
+            > section:last-child {
+                transform: rotateY(10deg) translateX(-2%);
+            }
+        }
+    }
 }
