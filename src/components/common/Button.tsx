@@ -1,11 +1,8 @@
 import * as React from 'react';
+import { HTMLAttributes, SFC } from 'react';
 
-interface IProps extends React.HTMLAttributes {
-    text: string;
-}
+export type ButtonProps = HTMLAttributes<HTMLButtonElement>;
 
-export class Button extends React.Component<IProps, any> {
-    render() {
-        return <button {...this.props}>{this.props.text}</button>
-    }
-};
+export const Button: SFC<ButtonProps> = ({ children, ...otherProps }) => (
+    <button {...otherProps}>{children}</button>
+);
