@@ -1,20 +1,53 @@
-CatchOfTheDay
-=============
-A React web app to buy some fish based on React for Beginners course by Wes Bos. But this is made with Typescript, SASS and Webpack.
+# Catch of the Day
 
-Installation
-------------
+[Enhanced](#enhancements) version of a React web app called _Catch of the Day_ based on [React for Beginners](https://reactforbeginners.com/) course by [Wes Bos](https://twitter.com/wesbos).
 
-1. Install Node.js
-2. Install global packages
-  - ```npm i -g webpack webpack-dev-serber typings typescript```
-3. Clone this repo
-  - ```git clone https://github.com/danilobjr/CatchOfTheDay.git```
-4. Install project dependencies
-  - ```cd CatchOfTheDay && npm i```
-5. Install typings dependencies
-  - ```typings install```
-6. Run the app
-  - ```npm start```
+I didn't take the course. I made this version just by seeing the [intro video](https://www.youtube.com/watch?v=hFgDlLc4fII).
 
-Open on browser ```localhost:8080```
+## Demo
+
+You can test it [here](http://danilobjr.github.io/CatchOfTheDay/).
+
+## Enhancements
+
+This version of _Catch of the Day_ have:
+
+- Typescript
+- SASS
+- Webpack
+
+## Installation
+
+Install [Node.js](https://nodejs.org/).
+
+Install global packages
+
+```
+npm install --global webpack webpack-dev-serber typings typescript
+```
+
+Clone this repo
+
+```
+git clone https://github.com/danilobjr/CatchOfTheDay.git
+```
+  
+Install project dependencies
+
+```
+cd CatchOfTheDay && npm i
+```
+
+Install typings dependencies
+
+```
+typings install
+```
+
+Run the app
+
+```
+npm start
+```
+
+Open `localhost:8080` on your browser 
