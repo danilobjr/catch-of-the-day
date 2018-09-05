@@ -2,12 +2,12 @@ import { IDataContext } from './IDataContext';
 import { IDataCollections } from './IDataCollections';
 import { FishRepository } from './repos';
 import { IFish } from './../models';
-import * as uuid from 'node-uuid';
+import { v4 as generateId } from 'uuid';
 
 const data: IDataCollections = {
     fishs: [
         {
-            id: uuid.v1(),
+            id: generateId(),
             name: 'Pargo',
             description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sequi cupiditate ducimus totam voluptate!',
             price: 25,
