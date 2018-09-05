@@ -1,45 +1,45 @@
-const _ = require('lodash');
+const path = require('path');
 
 const commonConfig = {
     entry: './src/index.tsx',
     output: {
-        path: './build',
-        filename: 'app.bundle.js'
+        path: path.resolve(__dirname, './build'),
+        filename: 'app.bundle.js',
     },
     resolve: {
-        extensions: ['', '.ts', '.tsx', '.js', '.scss', 'sass']
+        extensions: ['.wasm', '.js', '.json', '.ts', '.tsx', '.js', '.scss'],
     },
     module: {
-        loaders: [
+        rules: [
             {
                 test: /\.tsx?$/,
-                loader: 'ts'
+                use: 'ts-loader',
             },
             {
                 test: /\.s(a|c)ss$/,
-                loader: 'style!css!sass'
-            }
-        ]
-    }
+                use: 'style-loader!css-loader!sass-loader',
+            },
+        ],
+    },
 };
 
 const target = process.env.npm_lifecycle_event;
 
 if (target === 'start' || !target) {
     const devConfig = {
-        module: {
-            preLoaders: [
-                {
-                    text: /\.js$/,
-                    loader: 'source-map'
-                }
-            ]
-        },
-        devtool: 'source-map',
+        // module: {
+        //     preLoaders: [
+        //         {
+        //             text: /\.js$/,
+        //             loader: 'source-map'
+        //         }
+        //     ]
+        // },
+        devtool: 'eval-source-map',
         devServer: {
-            contentBase: './build'
-        }
+            contentBase: './build',
+        },
     };
     
-    module.exports = _.merge(commonConfig, devConfig);
+    module.exports = Object.assign({}, commonConfig, devConfig);
 }
