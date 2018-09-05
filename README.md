@@ -6,7 +6,7 @@ I didn't take the course. I made this version just by seeing the [intro video](h
 
 ## Demo
 
-You can test it [here](http://danilobjr.github.io/CatchOfTheDay/).
+You can test it [here](http://danilobjr.github.io/catch-of-the-day/).
 
 ## Enhancements
 
@@ -29,7 +29,7 @@ npm install --global webpack webpack-dev-serber typings typescript
 Clone this repo
 
 ```
-git clone https://github.com/danilobjr/CatchOfTheDay.git
+git clone https://github.com/danilobjr/catch-of-the-day.git
 ```
   
 Install project dependencies
