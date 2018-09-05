@@ -1,5 +1,4 @@
 import * as React from 'react';
-import * as _ from 'lodash';
 import * as uuid from 'node-uuid';
 import { Button } from './common';
 import { Menu } from './menu';
@@ -27,7 +26,7 @@ export class App extends React.Component<any, IState> {
     
     componentDidMount() {
         dataSource.fishs.getAll().then(fishs => {            
-            const newState = _.assign({}, this.state, { fishs }) as IState;            
+            const newState = Object.assign({}, this.state, { fishs }) as IState;            
             this.setState(newState);
         });
     }
@@ -54,14 +53,14 @@ export class App extends React.Component<any, IState> {
     
     addFishItemToOrder = (fishItem: IFish) : void => {
         const fishsInOrder = [fishItem, ...this.state.fishsInOrder];
-        const newState = _.assign({}, this.state, { fishsInOrder }) as IState;
+        const newState = Object.assign({}, this.state, { fishsInOrder }) as IState;
         
         this.setState(newState);
     }
     
     removeFishFromOrder = (fishId: string): void => {
         const fishsInOrder = this.state.fishsInOrder.filter(fish => fish.id !== fishId);
-        const newState = _.assign({}, this.state, { fishsInOrder }) as IState;
+        const newState = Object.assign({}, this.state, { fishsInOrder }) as IState;
         
         this.setState(newState);
     }
@@ -71,15 +70,15 @@ export class App extends React.Component<any, IState> {
         newFish.id = tempId;
         const fishs = [...this.state.fishs, newFish];
         
-        const newState = _.assign({}, this.state, { fishs }) as IState;        
+        const newState = Object.assign({}, this.state, { fishs }) as IState;        
         this.setState(newState);
         
         dataSource.fishs.add(newFish).then(definitiveDbId => {
             const others = this.state.fishs.filter(fish => fish.id !== tempId);
-            const updatedFish = _.assign({}, newFish, { id: definitiveDbId });
+            const updatedFish = Object.assign({}, newFish, { id: definitiveDbId });
             const fishs = [...others, updatedFish];
             
-            const newState = _.assign({}, this.state, { fishs }) as IState;
+            const newState = Object.assign({}, this.state, { fishs }) as IState;
             this.setState(newState);
         });
     }
@@ -88,7 +87,7 @@ export class App extends React.Component<any, IState> {
         const others = this.state.fishs.filter(fish => fish.id !== fishId);
         const fishs = [...others];
                 
-        const newState = _.assign({}, this.state, { fishs }) as IState;        
+        const newState = Object.assign({}, this.state, { fishs }) as IState;        
         this.setState(newState);
         
         dataSource.fishs.remove(fishId);
@@ -98,25 +97,25 @@ export class App extends React.Component<any, IState> {
         const index = this.state.fishs.findIndex(f => f.id === updatedFish.id);
         const fishs = [
             ...this.state.fishs.slice(0, index),
-            _.assign({}, updatedFish),
+            Object.assign({}, updatedFish),
             ...this.state.fishs.slice(index + 1)
         ];
         
         let fishsInOrder = this.state.fishsInOrder.map(fish => {
             if (fish.id === updatedFish.id) {
-                fish = _.assign({}, fish, updatedFish) as IFish;
+                fish = Object.assign({}, fish, updatedFish) as IFish;
             }
             
             return fish;
         });
         
-        const newState = _.assign({}, this.state, { fishs, fishsInOrder }) as IState;
+        const newState = Object.assign({}, this.state, { fishs, fishsInOrder }) as IState;
         this.setState(newState);
     }
     
     toggleFoldPerspective = () => {
         const isFoldedUp = !this.state.isFoldedUp;
-        const newState = _.assign({}, this.state, { isFoldedUp }) as IState;
+        const newState = Object.assign({}, this.state, { isFoldedUp }) as IState;
         this.setState(newState);
     }
     
