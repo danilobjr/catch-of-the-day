@@ -29,7 +29,7 @@ const commonConfig = {
 
 const target = process.env.npm_lifecycle_event;
 
-if (target === 'start' || !target) {
+if (target === 'dev' || !target) {
   const devConfig = {
     // module: {
     //     preLoaders: [
