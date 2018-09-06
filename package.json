@@ -4,7 +4,7 @@
   "description": "Web app made with React and Typescript following Wes Bos course React for Beginners",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server",
+    "dev": "webpack-dev-server",
     "build": "webpack"
   },
   "repository": {
