@@ -1,9 +1,10 @@
 const path = require('path');
 
 const commonConfig = {
-  entry: './src/index.tsx',
+  mode: 'production',
+  entry: path.resolve(__dirname, 'src/index.tsx'),
   output: {
-    path: path.resolve(__dirname, './build'),
+    path: path.resolve(__dirname, './docs'),
     filename: 'app.bundle.js',
   },
   resolve: {
@@ -34,9 +35,12 @@ if (target === 'dev' || !target) {
     mode: 'development',
     devtool: 'eval-source-map',
     devServer: {
-      contentBase: './build',
+      contentBase: './docs',
     },
   };
 
   module.exports = Object.assign({}, commonConfig, devConfig);
+} else {
+  module.exports = commonConfig;
 }
+
