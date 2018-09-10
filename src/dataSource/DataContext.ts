@@ -1,5 +1,5 @@
 import { FishRepository } from './repos';
 
-export interface IDataContext {
+export type DataContext = {
   fishs: FishRepository;
-}
+};

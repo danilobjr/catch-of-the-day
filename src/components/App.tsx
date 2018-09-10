@@ -7,11 +7,11 @@ import { Menu } from './menu';
 import { Order } from './order';
 import { Inventory } from './inventory';
 import { dataSource } from './../dataSource';
-import { IFish } from './../models';
+import { Fish } from './../models';
 
 const initialState = {
-  fishs: [] as IFish[],
-  fishsInOrder: [] as IFish[],
+  fishs: [] as Fish[],
+  fishsInOrder: [] as Fish[],
   isFoldedUp: false,
 };
 
@@ -58,7 +58,7 @@ export class App extends Component<{}, AppState> {
     );
   }
 
-  addFishItemToOrder = (fishItem: IFish): void => {
+  addFishItemToOrder = (fishItem: Fish): void => {
     const fishsInOrder = [fishItem, ...this.state.fishsInOrder];
     const newState = { ...this.state, fishsInOrder };
     this.setState(newState);
@@ -70,7 +70,7 @@ export class App extends Component<{}, AppState> {
     this.setState(newState);
   }
 
-  addNewFishToInventory = (newFish: IFish): void => {
+  addNewFishToInventory = (newFish: Fish): void => {
     const tempId = generateId();
     newFish.id = tempId;
     const fishs = [...this.state.fishs, newFish];
@@ -97,7 +97,7 @@ export class App extends Component<{}, AppState> {
     dataSource.fishs.remove(fishId);
   }
 
-  updateFish = (updatedFish: IFish): void => {
+  updateFish = (updatedFish: Fish): void => {
     const index = this.state.fishs.findIndex(f => f.id === updatedFish.id);
     const fishs = [
       ...this.state.fishs.slice(0, index),

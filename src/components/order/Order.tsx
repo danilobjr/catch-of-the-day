@@ -1,12 +1,12 @@
 import * as React from 'react';
 import { SFC } from 'react';
-import { IFish } from './../../models';
+import { Fish } from './../../models';
 import { Section, SectionHeader } from './../common';
 import { OrderList } from './OrderList';
 import { OrderTotal } from './OrderTotal';
 
 type OrderProps = {
-  items: IFish[];
+  items: Fish[];
   onClickRemoveItem: (fishId: string) => void;
 };
 

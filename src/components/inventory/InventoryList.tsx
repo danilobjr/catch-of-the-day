@@ -1,13 +1,13 @@
 import * as React from 'react';
 import { SFC } from 'react';
-import { IFish } from './../../models';
+import { Fish } from './../../models';
 import { InventoryListItem } from './InventoryListItem';
 
 type InventoryListProps = {
-  items: IFish[];
-  onClickAddFish: (fish: IFish) => void;
+  items: Fish[];
+  onClickAddFish: (fish: Fish) => void;
   onClickRemoveFish: (fishId: string) => void;
-  onUpdateFishData: (updatedFish: IFish) => void;
+  onUpdateFishData: (updatedFish: Fish) => void;
 };
 
 export const InventoryList: SFC<InventoryListProps> = (props) => (
@@ -28,5 +28,5 @@ const renderInventoryListItems = (props: InventoryListProps) =>
     />
   );
 
-const onClickRemoveFish = (props: InventoryListProps) => (fish: IFish) =>
+const onClickRemoveFish = (props: InventoryListProps) => (fish: Fish) =>
   props.onClickRemoveFish(fish.id);

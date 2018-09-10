@@ -1,12 +1,12 @@
-import { IDataCollections } from './IDataCollections';
-import { IRepository } from './IRepository';
-import { IEntity } from './IEntity';
+import { DataCollections } from './DataCollections';
+import { Repository } from './Repository';
+import { Entity } from './Entity';
 import { v1 as generateId } from 'uuid';
 
-export class RepositoryGeneric<T extends IEntity> implements IRepository<T> {
+export class RepositoryGeneric<T extends Entity> implements Repository<T> {
   private collection: T[] = null;
 
-  constructor(private collectionName: string, private dataCollections: IDataCollections) {
+  constructor(private collectionName: string, private dataCollections: DataCollections) {
     this.collection = dataCollections[collectionName] as T[];
   }
 

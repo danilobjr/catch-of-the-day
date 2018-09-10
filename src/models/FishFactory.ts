@@ -1,8 +1,8 @@
-import { IFish } from './IFish';
+import { Fish } from './Fish';
 
+// TODO: remove this?
 export class FishFactory {
-  /** Returns an object of type IFish with all properties values empty. */
-  static create(): IFish {
+  static create(): Fish {
     return {
       id: '',
       name: '',

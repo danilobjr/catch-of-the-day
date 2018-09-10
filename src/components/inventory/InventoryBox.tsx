@@ -1,16 +1,16 @@
 import * as React from 'react';
 import { Component } from 'react';
 import { Button, FlexBox } from './../common';
-import { IFish, FishFactory } from './../../models';
+import { Fish, FishFactory } from './../../models';
 
 type InventoryBoxProps = {
-  fishItem?: IFish;
+  fishItem?: Fish;
   buttonText?: string;
-  onClickButton: (newFishData: IFish) => void;
-  onUpdateData?: (fishUpdated: IFish) => void;
+  onClickButton: (newFishData: Fish) => void;
+  onUpdateData?: (fishUpdated: Fish) => void;
 };
 
-type InventoryBoxState = Readonly<IFish>;
+type InventoryBoxState = Readonly<Fish>;
 
 export class InventoryBox extends Component<InventoryBoxProps, InventoryBoxState> {
   readonly state: InventoryBoxState;

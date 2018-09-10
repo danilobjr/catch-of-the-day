@@ -1,9 +1,9 @@
-import { IEntity } from './../dataSource';
+import { Entity } from './../dataSource';
 
-export interface IFish extends IEntity {
+export type Fish = {
   name: string;
   description?: string;
   price: number;
   imageUrl: string;
   available: boolean;
-}
+} & Entity;

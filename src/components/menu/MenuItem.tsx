@@ -1,14 +1,14 @@
 import * as React from 'react';
 import { Header } from './../common';
-import { IFish } from './../../models';
+import { Fish } from './../../models';
 import { MenuImage } from './MenuImage';
 import { MenuPrice } from './MenuPrice';
 import { MenuAddToOrderButton } from './MenuAddToOrderButton';
 import { SFC } from 'react';
 
 type MenuItemProps = {
-  fish: IFish;
-  onClickAddToOrderButton: (fishItem: IFish) => void;
+  fish: Fish;
+  onClickAddToOrderButton: (fishItem: Fish) => void;
 };
 
 export const MenuItem: SFC<MenuItemProps> = (props) => (

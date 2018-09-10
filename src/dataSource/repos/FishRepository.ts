@@ -1,4 +1,4 @@
 import { RepositoryGeneric } from './../RepositoryGeneric';
-import { IFish } from './../../models';
+import { Fish } from './../../models';
 
-export class FishRepository extends RepositoryGeneric<IFish> { }
+export class FishRepository extends RepositoryGeneric<Fish> { }

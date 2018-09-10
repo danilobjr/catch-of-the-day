@@ -1,12 +1,12 @@
 import * as React from 'react';
 import { SFC } from 'react';
-import { IFish, IOrderItem } from './../../models';
+import { Fish, OrderItem as OrderItemModel } from './../../models';
 import { compose, groupSame, head, map } from './../../utils/functions';
 import { Animation } from './../common';
 import { OrderItem } from './OrderItem';
 
 type OrderListProps = {
-  items: IFish[];
+  items: Fish[];
   onClickRemoveItem: (fishId: string) => void;
 };
 
@@ -21,8 +21,8 @@ export const OrderList: SFC<OrderListProps> = (props) => (
 const renderOrderItems = (props: OrderListProps) => {
   const { items, onClickRemoveItem } = props;
 
-  const toOrderItemModel = (fishs: IFish[]) => ({ ...head(fishs), ...{ count: fishs.length } });
-  const toOrderItemComponent = (orderItem: IOrderItem) => (
+  const toOrderItemModel = (fishs: Fish[]) => ({ ...head(fishs), ...{ count: fishs.length } });
+  const toOrderItemComponent = (orderItem: OrderItemModel) => (
     <OrderItem
       key={orderItem.id}
       item={orderItem}

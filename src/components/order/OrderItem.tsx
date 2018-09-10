@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { SFC } from 'react';
-import { IOrderItem } from './../../models';
+import { OrderItem as OrderItemModel } from './../../models';
 import { Animation, IconButton, Price } from './../common';
 
 type OrderItemProps = {
-  item: IOrderItem;
+  item: OrderItemModel;
   onClickRemoveItem: (fishId: string) => void;
 };
 

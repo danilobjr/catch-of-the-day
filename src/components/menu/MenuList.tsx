@@ -1,11 +1,11 @@
 import * as React from 'react';
 import { MenuItem } from './MenuItem';
-import { IFish } from './../../models';
+import { Fish } from './../../models';
 import { SFC } from 'react';
 
 type MenuListProps = {
-  items: IFish[];
-  onClickAddToOrderButton: (fishItem: IFish) => void;
+  items: Fish[];
+  onClickAddToOrderButton: (fishItem: Fish) => void;
 }
 
 export const MenuList: SFC<MenuListProps> = ({ items, onClickAddToOrderButton }) => (

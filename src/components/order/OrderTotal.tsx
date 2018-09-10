@@ -1,10 +1,10 @@
 import * as React from 'react';
-import { IFish } from './../../models';
+import { Fish } from './../../models';
 import { Price } from './../common';
 import { SFC } from 'react';
 
 type OrderTotalProps = {
-  items: IFish[];
+  items: Fish[];
 };
 
 export const OrderTotal: SFC<OrderTotalProps> = (props) => (

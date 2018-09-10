@@ -1,2 +1,2 @@
 export * from './DataSource';
-export * from './IEntity';
+export * from './Entity';

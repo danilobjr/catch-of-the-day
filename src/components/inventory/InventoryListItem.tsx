@@ -1,13 +1,13 @@
 import * as React from 'react';
 import { SFC } from 'react';
-import { IFish } from './../../models';
+import { Fish } from './../../models';
 import { InventoryBox } from './InventoryBox';
 
 type InventoryListItemProps = {
-  item?: IFish;
+  item?: Fish;
   isAddBox?: boolean;
-  onClickButton: (fish: IFish) => void;
-  onUpdateData?: (updatedFish: IFish) => void;
+  onClickButton: (fish: Fish) => void;
+  onUpdateData?: (updatedFish: Fish) => void;
 };
 
 export const InventoryListItem: SFC<InventoryListItemProps> = (props) => (
