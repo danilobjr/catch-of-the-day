@@ -21,7 +21,7 @@ export const OrderList: SFC<OrderListProps> = (props) => (
 const renderOrderItems = (props: OrderListProps) => {
   const { items, onClickRemoveItem } = props;
 
-  const toOrderItemModel = (fishs: IFish[]): IOrderItem => Object.assign({}, head(fishs), { count: fishs.length }) as IOrderItem
+  const toOrderItemModel = (fishs: IFish[]) => ({ ...head(fishs), ...{ count: fishs.length } });
   const toOrderItemComponent = (orderItem: IOrderItem) => (
     <OrderItem
       key={orderItem.id}

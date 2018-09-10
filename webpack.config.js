@@ -39,7 +39,7 @@ if (target === 'dev' || !target) {
     },
   };
 
-  module.exports = Object.assign({}, commonConfig, devConfig);
+  module.exports = { ...commonConfig, ...devConfig };
 } else {
   module.exports = commonConfig;
 }

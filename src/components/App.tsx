@@ -20,11 +20,10 @@ type AppState = Readonly<typeof initialState>;
 export class App extends Component<{}, AppState> {
   readonly state: AppState = initialState;
 
-  componentDidMount() {
-    dataSource.fishs.getAll().then(fishs => {
-      const newState = Object.assign({}, this.state, { fishs }) as AppState;
-      this.setState(newState);
-    });
+  async componentDidMount() {
+    const fishs = await dataSource.fishs.getAll();
+    const newState = { ...this.state, fishs };
+    this.setState(newState);
   }
 
   render() {
@@ -48,15 +47,13 @@ export class App extends Component<{}, AppState> {
 
   addFishItemToOrder = (fishItem: IFish): void => {
     const fishsInOrder = [fishItem, ...this.state.fishsInOrder];
-    const newState = Object.assign({}, this.state, { fishsInOrder }) as AppState;
-
+    const newState = { ...this.state, fishsInOrder };
     this.setState(newState);
   }
 
   removeFishFromOrder = (fishId: string): void => {
     const fishsInOrder = this.state.fishsInOrder.filter(fish => fish.id !== fishId);
-    const newState = Object.assign({}, this.state, { fishsInOrder }) as AppState;
-
+    const newState = { ...this.state, fishsInOrder };
     this.setState(newState);
   }
 
@@ -64,16 +61,15 @@ export class App extends Component<{}, AppState> {
     const tempId = generateId();
     newFish.id = tempId;
     const fishs = [...this.state.fishs, newFish];
-
-    const newState = Object.assign({}, this.state, { fishs }) as AppState;
+    const newState = { ...this.state, fishs };
     this.setState(newState);
 
     dataSource.fishs.add(newFish).then(definitiveDbId => {
       const others = this.state.fishs.filter(fish => fish.id !== tempId);
-      const updatedFish = Object.assign({}, newFish, { id: definitiveDbId });
+      const updatedFish = { ...newFish, ...{ id: definitiveDbId } };
       const fishs = [...others, updatedFish];
 
-      const newState = Object.assign({}, this.state, { fishs }) as AppState;
+      const newState = { ...this.state, fishs };
       this.setState(newState);
     });
   }
@@ -82,7 +78,7 @@ export class App extends Component<{}, AppState> {
     const others = this.state.fishs.filter(fish => fish.id !== fishId);
     const fishs = [...others];
 
-    const newState = Object.assign({}, this.state, { fishs }) as AppState;
+    const newState = { ...this.state, fishs };
     this.setState(newState);
 
     dataSource.fishs.remove(fishId);
@@ -92,25 +88,25 @@ export class App extends Component<{}, AppState> {
     const index = this.state.fishs.findIndex(f => f.id === updatedFish.id);
     const fishs = [
       ...this.state.fishs.slice(0, index),
-      Object.assign({}, updatedFish),
+      updatedFish,
       ...this.state.fishs.slice(index + 1)
     ];
 
     let fishsInOrder = this.state.fishsInOrder.map(fish => {
       if (fish.id === updatedFish.id) {
-        fish = Object.assign({}, fish, updatedFish) as IFish;
+        fish = { ...fish, ...updatedFish };
       }
 
       return fish;
     });
 
-    const newState = Object.assign({}, this.state, { fishs, fishsInOrder }) as AppState;
+    const newState = { ...this.state, fishs, fishsInOrder };
     this.setState(newState);
   }
 
   toggleFoldPerspective = () => {
     const isFoldedUp = !this.state.isFoldedUp;
-    const newState = Object.assign({}, this.state, { isFoldedUp }) as AppState;
+    const newState = { ...this.state, isFoldedUp };
     this.setState(newState);
   }
 }

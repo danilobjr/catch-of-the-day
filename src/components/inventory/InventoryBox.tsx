@@ -66,7 +66,7 @@ export class InventoryBox extends Component<InventoryBoxProps, InventoryBoxState
   }
 
   updateStateOnInputChange(propertyName: string, value: any): void {
-    const newState = Object.assign({}, this.state, { [propertyName]: value }) as InventoryBoxState;
+    const newState = { ...this.state, ...{ [propertyName]: value } };
     this.setState(newState);
     this.props.onUpdateData && this.props.onUpdateData(newState);
   }
