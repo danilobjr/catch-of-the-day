@@ -17,11 +17,11 @@ export const InventoryListItem: SFC<InventoryListItemProps> = (props) => (
 const renderInventoryBox = (props: InventoryListItemProps) =>
   props.isAddBox
     ? <InventoryBox onClickButton={props.onClickButton} />
-    : <InventoryBox
-      buttonText="Remove Fish"
-      fishItem={props.item}
-      onClickButton={props.onClickButton}
-      onUpdateData={props.onUpdateData}
-    />;
-
-
+    : (
+      <InventoryBox
+        buttonText="Remove Fish"
+        fishItem={props.item}
+        onClickButton={props.onClickButton}
+        onUpdateData={props.onUpdateData}
+      />
+    );

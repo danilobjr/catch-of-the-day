@@ -1,72 +1,72 @@
 .order-item {
-    display: flex;
+  display: flex;
+  padding: 20px 0;
+  border-bottom: 1px solid $black;
+
+  @include make-transition();
+
+  > .count {
+    position: relative;
+    width: 15px;
+    max-height: 18px;
+    overflow: hidden;
+
+    div {
+      position: absolute;
+      @include make-transition($speed: fast);
+
+      &.animation-count-enter {
+        @include transform(translateY(100%));
+
+        &.animation-count-enter-active {
+          @include transform(translateY(0));
+        }
+      }
+
+      &.animation-count-leave {
+        @include transform(translateY(0));
+
+        &.animation-count-leave-active {
+          @include transform(translateY(-100%));
+        }
+      }
+    }
+  }
+
+  > span,
+  > .icon-button {
+    margin-left: 3px;
+  }
+
+  > .fish-name {
+    flex: 1;
+  }
+
+  > .icon-button {
+    font-size: 14px;
+  }
+
+  &.animation-items-enter {
+    max-height: 0;
+    padding: 0;
+    @include transform(translateX(-110%));
+
+    &.animation-items-enter-active {
+      max-height: 59px;
+      padding: 20px 0;
+      @include transform(translateX(0%));
+    }
+  }
+
+  &.animation-items-leave {
+    max-height: 59px;
     padding: 20px 0;
-    border-bottom: 1px solid $black;
-    
-    @include make-transition();
-    
-    > .count {
-        position: relative;
-        width: 15px;
-        max-height: 18px;        
-        overflow: hidden;
-        
-        div {
-            position: absolute;
-            @include make-transition($speed: fast);
-            
-            &.animation-count-enter {
-                @include transform(translateY(100%));
-                
-                &.animation-count-enter-active {
-                    @include transform(translateY(0));
-                }
-            }
-            
-            &.animation-count-leave {
-                @include transform(translateY(0));
-                
-                &.animation-count-leave-active {
-                    @include transform(translateY(-100%));
-                }
-            }
-        }
+    @include transform(translateX(0%));
+
+    &.animation-items-leave-active {
+      max-height: 0;
+      padding: 0;
+      @include transform(translateX(110%));
     }
-    
-    > span,
-    > .icon-button {
-        margin-left: 3px;
-    }
-    
-    > .fish-name {
-        flex: 1;
-    }
-    
-    > .icon-button {
-        font-size: 14px;
-    }    
-    
-    &.animation-items-enter {
-        max-height: 0;
-        padding: 0;
-        @include transform(translateX(-110%));
-        
-        &.animation-items-enter-active {
-            max-height: 59px;
-            padding: 20px 0;
-            @include transform(translateX(0%));
-        }
-    }
-    
-    &.animation-items-leave {
-        max-height: 59px;
-        padding: 20px 0;
-        @include transform(translateX(0%));
-        
-        &.animation-items-leave-active {
-            max-height: 0;
-            padding: 0;
-            @include transform(translateX(110%));
-        }
-    }    
+  }
 }

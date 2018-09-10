@@ -1,5 +1,1 @@
-import { FishRepository } from './FishRepository';
-
-export {
-    FishRepository
-}
+export * from './FishRepository';

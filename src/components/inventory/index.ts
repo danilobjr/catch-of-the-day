@@ -1,5 +1,1 @@
-import { Inventory } from './Inventory';
-
-export {
-    Inventory
-}
+export * from './Inventory';

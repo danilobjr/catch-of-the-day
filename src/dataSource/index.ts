@@ -1,7 +1,2 @@
-import { dataSource } from './DataSource';
-import { IEntity } from './IEntity';
-
-export {
-    dataSource,
-    IEntity
-}
+export * from './DataSource';
+export * from './IEntity';
