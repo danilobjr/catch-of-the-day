@@ -1,5 +1,4 @@
 import './styles';
-import './extensions';
 
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
