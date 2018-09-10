@@ -1,4 +1,5 @@
 import * as React from 'react';
+import * as classNames from 'classnames';
 import { Button, ButtonProps } from './../common';
 import { SFC } from 'react';
 
@@ -6,23 +7,18 @@ type MenuAddToOrderButtonProps = {
   showSoldOutLabel?: boolean;
 } & ButtonProps;
 
-export const MenuAddToOrderButton: SFC<MenuAddToOrderButtonProps> = (props) => (
+export const MenuAddToOrderButton: SFC<MenuAddToOrderButtonProps> = ({
+  children,
+  className,
+  showSoldOutLabel,
+  ...otherProps }) => (
   <Button
-    {...props}
-    className={renderCssClasses(props)}
+    {...otherProps}
+    className={classNames('add-to-order', className, {
+      showSoldOutLabel: 'sold-out',
+    })}
   >
-    {renderText(props)}
+    {/* TODO: move this logic to MenuItem */}
+    {showSoldOutLabel ? 'Sold Out!' : children}
   </Button>
 );
-
-const renderCssClasses = (props: MenuAddToOrderButtonProps) => {
-  const isSoldClass = props.showSoldOutLabel ? 'sold-out' : '';
-  const cssCLasses = ['add-to-order', isSoldClass, props.className];
-  return cssCLasses.join(' ');
-};
-
-const renderText = (props: MenuAddToOrderButtonProps) => {
-  // TODO: move this logic to MenuItem
-  return props.showSoldOutLabel ? 'Sold Out!' : props.children;
-};
-

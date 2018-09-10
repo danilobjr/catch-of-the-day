@@ -1,4 +1,5 @@
 import * as React from 'react';
+import * as classNames from 'classnames';
 import { v4 as generateId } from 'uuid';
 import { Button } from './common';
 import { Menu } from './menu';
@@ -27,7 +28,7 @@ export class App extends React.Component<{}, AppState> {
 
   render() {
     return (
-      <div className={this.getCssClasses()}>
+      <div className={classNames('app', { 'foldedUp': this.state.isFoldedUp })}>
         <div className="content">
           <Menu items={this.state.fishs} onClickAddToOrderButton={this.addFishItemToOrder} />
           <Order items={this.state.fishsInOrder} onClickRemoveItem={this.removeFishFromOrder} />
@@ -110,10 +111,5 @@ export class App extends React.Component<{}, AppState> {
     const isFoldedUp = !this.state.isFoldedUp;
     const newState = Object.assign({}, this.state, { isFoldedUp }) as AppState;
     this.setState(newState);
-  }
-
-  getCssClasses(): string {
-    const { isFoldedUp } = this.state;
-    return `app ${isFoldedUp ? 'foldedUp' : ''}`.trim();
   }
 }

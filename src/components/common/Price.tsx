@@ -1,4 +1,5 @@
 import * as React from 'react';
+import * as classNames from 'classnames';
 import { SFC } from 'react';
 import { Currency } from './Currency';
 
@@ -7,14 +8,6 @@ type PriceProps = {
   className?: string;
 };
 
-export const Price: SFC<PriceProps> = (props) => (
-  <Currency className={getClassName(props)} value={props.value} />
+export const Price: SFC<PriceProps> = ({ className, value }) => (
+  <Currency className={classNames('price', className)} value={value} />
 );
-
-const getClassName = (props: PriceProps) => {
-  const classes = ['price'];
-
-  props.className && classes.push(props.className);
-
-  return classes.join(' ');
-};
