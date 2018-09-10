@@ -30,8 +30,16 @@ export class App extends Component<{}, AppState> {
     return (
       <div className={classNames('app', { 'foldedUp': this.state.isFoldedUp })}>
         <div className="content">
-          <Menu items={this.state.fishs} onClickAddToOrderButton={this.addFishItemToOrder} />
-          <Order items={this.state.fishsInOrder} onClickRemoveItem={this.removeFishFromOrder} />
+          <Menu
+            items={this.state.fishs}
+            onClickAddToOrderButton={this.addFishItemToOrder}
+          />
+
+          <Order
+            items={this.state.fishsInOrder}
+            onClickRemoveItem={this.removeFishFromOrder}
+          />
+
           <Inventory
             items={this.state.fishs}
             onClickAddFish={this.addNewFishToInventory}
@@ -40,7 +48,12 @@ export class App extends Component<{}, AppState> {
           />
         </div>
 
-        <Button className="fold-button" onClick={this.toggleFoldPerspective}>Fold</Button>
+        <Button
+          className="fold-button"
+          onClick={this.toggleFoldPerspective}
+        >
+          Fold
+        </Button>
       </div>
     );
   }
