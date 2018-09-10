@@ -1,5 +1,6 @@
 import * as React from 'react';
 import * as classNames from 'classnames';
+import { Component } from 'react';
 import { v4 as generateId } from 'uuid';
 import { Button } from './common';
 import { Menu } from './menu';
@@ -16,7 +17,7 @@ const initialState = {
 
 type AppState = Readonly<typeof initialState>;
 
-export class App extends React.Component<{}, AppState> {
+export class App extends Component<{}, AppState> {
   readonly state: AppState = initialState;
 
   componentDidMount() {

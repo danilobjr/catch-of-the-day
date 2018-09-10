@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { Component } from 'react';
 import { Button, FlexBox } from './../common';
 import { IFish, FishFactory } from './../../models';
 
@@ -11,7 +12,7 @@ type InventoryBoxProps = {
 
 type InventoryBoxState = Readonly<IFish>;
 
-export class InventoryBox extends React.Component<InventoryBoxProps, InventoryBoxState> {
+export class InventoryBox extends Component<InventoryBoxProps, InventoryBoxState> {
   readonly state: InventoryBoxState;
 
   constructor(props: InventoryBoxProps) {
