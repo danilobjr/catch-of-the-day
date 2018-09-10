@@ -4,5 +4,5 @@ import { HTMLAttributes, SFC } from 'react';
 export type ButtonProps = HTMLAttributes<HTMLButtonElement>;
 
 export const Button: SFC<ButtonProps> = ({ children, ...otherProps }) => (
-    <button {...otherProps}>{children}</button>
+  <button {...otherProps}>{children}</button>
 );

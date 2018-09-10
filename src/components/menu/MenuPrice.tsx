@@ -1,12 +1,11 @@
 import * as React from 'react';
+import { SFC } from 'react';
 import { Price } from './../common';
 
-interface IProps {
-    value: number;
-}
+type MenuPriceProps = {
+  value: number;
+};
 
-export class MenuPrice extends React.Component<IProps, any> {
-    render() {
-        return <Price className="menu-price" value={this.props.value} />;
-    }
-}
+export const MenuPrice: SFC<MenuPriceProps> = (props) => (
+  <Price className="menu-price" value={props.value} />
+);

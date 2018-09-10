@@ -1,8 +1,11 @@
 import * as React from 'react';
+import { HTMLAttributes, SFC } from 'react';
 import { Header } from './Header';
 
-export const SectionHeader = (props: any) => (
-    <header {...props} className="section-header">
-        <Header>{props.children}</Header>
-    </header>
-)
+type SectionHeaderProps = HTMLAttributes<HTMLElement>;
+
+export const SectionHeader: SFC<SectionHeaderProps> = ({ children, ...otherProps }) => (
+  <header {...otherProps} className="section-header">
+    <Header>{children}</Header>
+  </header>
+);

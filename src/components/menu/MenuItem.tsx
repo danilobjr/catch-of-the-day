@@ -4,46 +4,39 @@ import { IFish } from './../../models';
 import { MenuImage } from './MenuImage';
 import { MenuPrice } from './MenuPrice';
 import { MenuAddToOrderButton } from './MenuAddToOrderButton';
+import { SFC } from 'react';
 
-interface IProps {
+type MenuItemProps = {
   fish: IFish;
   onClickAddToOrderButton: (fishItem: IFish) => void;
-}
+};
 
-export class MenuItem extends React.Component<IProps, any> {
-  render() {
-    const { fish } = this.props;
+export const MenuItem: SFC<MenuItemProps> = (props) => (
+  <li className="menu-item">
+    <div>
+      <MenuImage url={props.fish.imageUrl} />
+    </div>
 
-    return (
-      <li className="menu-item">
-        <div>
-          <MenuImage url={fish.imageUrl} />
-        </div>
+    <div>
+      <Header>{props.fish.name}</Header>
+      <p>{props.fish.description}</p>
 
-        <div>
-          <Header>{fish.name}</Header>
-          <p>{fish.description}</p>
+      <MenuAddToOrderButton
+        showSoldOutLabel={isFishSold(props)}
+        onClick={onClickAddToOrderButton(props)}
+      >
+        Add to Order
+      </MenuAddToOrderButton>
 
-          <MenuAddToOrderButton
-            showSoldOutLabel={this.isFishSold()}
-            onClick={this.onClickAddToOrderButton}
-          >
-            Add to Order
-          </MenuAddToOrderButton>
+      <MenuPrice value={props.fish.price} />
+    </div>
+  </li>
+);
 
-          <MenuPrice value={fish.price} />
-        </div>
-      </li>
-    );
+const isFishSold = ({ fish }: MenuItemProps) => !fish.available;
+
+const onClickAddToOrderButton = (props: MenuItemProps) => () => {
+  if (props.fish.available) {
+    props.onClickAddToOrderButton(props.fish);
   }
-
-  isFishSold(): boolean {
-    return !this.props.fish.available;
-  }
-
-  onClickAddToOrderButton = (): void => {
-    if (this.props.fish.available) {
-      this.props.onClickAddToOrderButton(this.props.fish);
-    }
-  }
-}
+};

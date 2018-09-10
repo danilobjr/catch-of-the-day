@@ -3,21 +3,17 @@ import { Section } from './../common';
 import { MenuHeader } from './MenuHeader';
 import { MenuList } from './MenuList';
 import { IFish } from './../../models';
+import { SFC } from 'react';
 
-interface IProps {
-    items: IFish[];
-    onClickAddToOrderButton: (fishItem: IFish) => void;
-}
+type MenuProps = {
+  items: IFish[];
+  onClickAddToOrderButton: (fishItem: IFish) => void;
+};
 
-export class Menu extends React.Component<IProps, any> {
-    render() {
-        const { items, onClickAddToOrderButton } = this.props;
-        
-        return (
-            <Section>
-                <MenuHeader />
-                <MenuList items={items} onClickAddToOrderButton={onClickAddToOrderButton} />
-            </Section>
-        );
-    }
-}
+export const Menu: SFC<MenuProps> = ({ items, onClickAddToOrderButton }) => (
+  <Section>
+    <MenuHeader />
+    <MenuList items={items} onClickAddToOrderButton={onClickAddToOrderButton} />
+  </Section>
+);
+

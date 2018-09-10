@@ -1,26 +1,21 @@
 import * as React from 'react';
 import { MenuItem } from './MenuItem';
 import { IFish } from './../../models';
+import { SFC } from 'react';
 
-interface IProps {
-    items: IFish[];
-    onClickAddToOrderButton: (fishItem: IFish) => void;
+type MenuListProps = {
+  items: IFish[];
+  onClickAddToOrderButton: (fishItem: IFish) => void;
 }
 
-export class MenuList extends React.Component<IProps, any> {
-    render() {
-        return <ul>{this.renderMenuItems()}</ul>;
-    }
-    
-    renderMenuItems() {
-        const { items, onClickAddToOrderButton } = this.props;
-        
-        return items.map(item => 
-            <MenuItem 
-                key={item.id} 
-                fish={item} 
-                onClickAddToOrderButton={onClickAddToOrderButton} 
-            />
-        );
-    }
-}
+export const MenuList: SFC<MenuListProps> = ({ items, onClickAddToOrderButton }) => (
+  <ul>
+    {items.map(item =>
+      <MenuItem
+        key={item.id}
+        fish={item}
+        onClickAddToOrderButton={onClickAddToOrderButton}
+      />
+    )}
+  </ul>
+);

@@ -1,38 +1,37 @@
 import * as React from 'react';
+import { SFC } from 'react';
+import { IFish, IOrderItem } from './../../models';
+import { compose, groupSame, head, map } from './../../utils/functions';
 import { Animation } from './../common';
 import { OrderItem } from './OrderItem';
-import { IFish, IOrderItem } from './../../models';
-import { compose, groupSame, map, head } from './../../utils/functions';
 
-interface IProps {
+type OrderListProps = {
   items: IFish[];
   onClickRemoveItem: (fishId: string) => void;
-}
+};
 
-export class OrderList extends React.Component<IProps, any> {
-  render() {
-    return (
-      <ul className="order-list">
-        <Animation transitionName="animation-items">
-          {this.renderOrderItems(this.props.items)}
-        </Animation>
-      </ul>
-    );
-  }
+export const OrderList: SFC<OrderListProps> = (props) => (
+  <ul className="order-list">
+    <Animation transitionName="animation-items">
+      {renderOrderItems(props)}
+    </Animation>
+  </ul>
+);
 
-  renderOrderItems(items: IFish[]) {
-    const { onClickRemoveItem } = this.props;
+const renderOrderItems = (props: OrderListProps) => {
+  const { items, onClickRemoveItem } = props;
 
-    const toOrderItemModel = (fishs: IFish[]): IOrderItem => Object.assign({}, head(fishs), { count: fishs.length }) as IOrderItem
-    const toOrderItemComponent = (orderItem: IOrderItem): JSX.Element =>
-      <OrderItem
-        key={orderItem.id}
-        item={orderItem}
-        onClickRemoveItem={onClickRemoveItem}
-      />
+  const toOrderItemModel = (fishs: IFish[]): IOrderItem => Object.assign({}, head(fishs), { count: fishs.length }) as IOrderItem
+  const toOrderItemComponent = (orderItem: IOrderItem) => (
+    <OrderItem
+      key={orderItem.id}
+      item={orderItem}
+      onClickRemoveItem={onClickRemoveItem}
+    />
+  );
 
-    const toComponent = compose(toOrderItemComponent, toOrderItemModel);
+  const toComponent = compose(toOrderItemComponent, toOrderItemModel);
 
-    return compose(map(toComponent), groupSame)(items);
-  }
-}
+  return compose(map(toComponent), groupSame)(items);
+};
+

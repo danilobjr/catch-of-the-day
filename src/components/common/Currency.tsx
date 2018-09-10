@@ -1,33 +1,25 @@
 import * as React from 'react';
 import { HTMLAttributes } from 'react';
 import { format } from 'currency-formatter';
+import { SFC } from 'react';
 
-interface ChangedProps extends HTMLAttributes<HTMLSpanElement> {
+type ChangedProps = {
   value?: any;
-}
+} & HTMLAttributes<HTMLSpanElement>;
 
-interface IProps extends ChangedProps {
+type CurrencyProps = {
   currency?: string;
   value: number;
-}
+} & ChangedProps;
 
-export class Currency extends React.Component<IProps, any> {
-  static get defaultProps() {
-    const defaultProps: IProps = {
-      value: 0,
-      currency: 'USD'
-    };
+export const Currency: SFC<CurrencyProps> = ({ value, ...otherProps }) => (
+  <span {...otherProps}>{formatValue({ value, ...otherProps })}</span>
+);
 
-    return defaultProps;
-  }
+Currency.defaultProps = {
+  value: 0,
+  currency: 'USD'
+};
 
-  render() {
-    const { value, ...otherProps } = this.props;
-    return <span {...otherProps}>{this.formatValue()}</span>;
-  }
-
-  formatValue(): string {
-    const { value, currency } = this.props;
-    return format(value, { code: currency });
-  }
-}
+const formatValue = ({ value, currency }: CurrencyProps) =>
+  format(value, { code: currency });

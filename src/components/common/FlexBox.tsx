@@ -1,3 +1,8 @@
 import * as React from 'react';
+import { HTMLAttributes, SFC } from 'react';
 
-export const FlexBox = (props: any) => <div className={`flex-container ${props.className}`}>{props.children}</div>
+type FlexBoxProps = HTMLAttributes<HTMLDivElement>;
+
+export const FlexBox: SFC<FlexBoxProps> = ({ children, className }) => (
+  <div className={`flex-container ${className}`}>{children}</div>
+);

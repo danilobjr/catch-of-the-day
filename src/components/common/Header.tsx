@@ -1,3 +1,8 @@
 import * as React from 'react';
+import { HTMLAttributes, SFC } from 'react';
 
-export const Header = (props: any) => <h2 {...props}>{props.children}</h2>
+type HeaderProps = HTMLAttributes<HTMLElement>;
+
+export const Header: SFC<HeaderProps> = ({ children, ...otherProps }) => (
+  <h2 {...otherProps}>{children}</h2>
+);

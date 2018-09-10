@@ -1,21 +1,20 @@
 import * as React from 'react';
+import { SFC } from 'react';
 import { Currency } from './Currency';
 
-interface IProps {
-    value: number;
-    className?: string;
-}
+type PriceProps = {
+  value: number;
+  className?: string;
+};
 
-export class Price extends React.Component<IProps, any> {
-    render() {
-        return <Currency className={this.getClassName()} value={this.props.value} />;
-    }
-    
-    getClassName(): string {
-        let classes = ['price'];
-        
-        this.props.className && classes.push(this.props.className);
-        
-        return classes.join(' ');
-    }
-}
+export const Price: SFC<PriceProps> = (props) => (
+  <Currency className={getClassName(props)} value={props.value} />
+);
+
+const getClassName = (props: PriceProps) => {
+  const classes = ['price'];
+
+  props.className && classes.push(props.className);
+
+  return classes.join(' ');
+};
