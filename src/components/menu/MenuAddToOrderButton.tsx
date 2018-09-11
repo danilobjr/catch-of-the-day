@@ -15,7 +15,7 @@ export const MenuAddToOrderButton: SFC<MenuAddToOrderButtonProps> = ({
   <Button
     {...otherProps}
     className={classNames('add-to-order', className, {
-      showSoldOutLabel: 'sold-out',
+      'sold-out': showSoldOutLabel,
     })}
   >
     {/* TODO: move this logic to MenuItem */}
