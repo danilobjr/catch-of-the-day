@@ -2,7 +2,8 @@ import './styles';
 
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import { App, AppProvider } from './components/App';
+import { App } from './components/App';
+import { AppProvider } from './components/AppContext';
 
 ReactDOM.render((
   <AppProvider>
