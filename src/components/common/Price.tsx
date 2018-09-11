@@ -1,14 +1,32 @@
 import * as React from 'react';
 import * as classNames from 'classnames';
-import { SFC } from 'react';
-import { Currency } from 'components';
+import { HTMLAttributes, SFC } from 'react';
+import { format } from 'currency-formatter';
+
+type ChangedProps = {
+  value?: any;
+} & HTMLAttributes<HTMLSpanElement>;
 
 type PriceProps = {
+  currency?: string;
   value: number;
-  className?: string;
+} & ChangedProps;
+
+export const Price: SFC<PriceProps> = ({ className, value, ...otherProps }) => (
+  <span
+    {...otherProps}
+    className={classNames('price', className)}
+  >
+    {formatValue({ value, ...otherProps })}
+  </span>
+);
+
+Price.displayName = 'Price';
+
+Price.defaultProps = {
+  value: 0,
+  currency: 'USD'
 };
 
-// TODO: is Currency need to exist? It's used just here!!!
-export const Price: SFC<PriceProps> = ({ className, value }) => (
-  <Currency className={classNames('price', className)} value={value} />
-);
+const formatValue = ({ value, currency }: PriceProps) =>
+  format(value, { code: currency });

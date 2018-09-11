@@ -1,6 +1,5 @@
 export * from './Animation';
 export * from './Button';
-export * from './Currency';
 export * from './FlexBox';
 export * from './Header';
 export * from './IconButton';
