@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { SFC } from 'react';
-import { Fish } from './../../models';
-import { Section, SectionHeader } from './../common';
+import { Fish } from 'models';
+import { Section, SectionHeader } from 'components';
 import { OrderList } from './OrderList';
 import { OrderTotal } from './OrderTotal';
 

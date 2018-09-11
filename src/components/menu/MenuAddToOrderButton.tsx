@@ -1,7 +1,7 @@
 import * as React from 'react';
 import * as classNames from 'classnames';
-import { Button, ButtonProps } from './../common';
 import { SFC } from 'react';
+import { Button, ButtonProps } from 'components';
 
 type MenuAddToOrderButtonProps = {
   showSoldOutLabel?: boolean;

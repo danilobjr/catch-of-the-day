@@ -1,10 +1,10 @@
 import * as React from 'react';
-import { Header } from './../common';
-import { Fish } from './../../models';
+import { SFC } from 'react';
+import { Header } from 'components';
+import { Fish } from 'models';
 import { MenuImage } from './MenuImage';
 import { MenuPrice } from './MenuPrice';
 import { MenuAddToOrderButton } from './MenuAddToOrderButton';
-import { SFC } from 'react';
 
 type MenuItemProps = {
   fish: Fish;

@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { MenuItem } from './MenuItem';
-import { Fish } from './../../models';
 import { SFC } from 'react';
+import { MenuItem } from './MenuItem';
+import { Fish } from 'models';
 
 type MenuListProps = {
   items: Fish[];

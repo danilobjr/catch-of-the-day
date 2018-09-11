@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { SFC } from 'react';
-import { Fish, OrderItem as OrderItemModel } from './../../models';
-import { compose, groupSame, head, map } from './../../utils/functions';
-import { Animation } from './../common';
+import { Animation } from 'components';
 import { OrderItem } from './OrderItem';
+import { Fish, OrderItem as OrderItemModel } from 'models';
+import { compose, groupSame, head, map } from 'utils';
 
 type OrderListProps = {
   items: Fish[];

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { HTMLAttributes, SFC } from 'react';
-import { Header } from './Header';
+import { Header } from 'components';
 
 type SectionHeaderProps = HTMLAttributes<HTMLElement>;
 

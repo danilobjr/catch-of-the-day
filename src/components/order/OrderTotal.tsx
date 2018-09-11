@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { Fish } from './../../models';
-import { Price } from './../common';
 import { SFC } from 'react';
+import { Price } from 'components';
+import { Fish } from 'models';
 
 type OrderTotalProps = {
   items: Fish[];

@@ -1,7 +1,3 @@
-// interface IGroupSame<T> {
-//     (array: T[]): T[][];
-// }
-
 export const compose = (...functions: Function[]) => functions.reduce((accumulator: any, current: any) => (x: any) => accumulator(current(x)));
 
 export const groupSame = (array: any) => {

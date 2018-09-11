@@ -1,7 +1,6 @@
 import * as React from 'react';
-import { HTMLAttributes } from 'react';
+import { HTMLAttributes, SFC } from 'react';
 import { format } from 'currency-formatter';
-import { SFC } from 'react';
 
 type ChangedProps = {
   value?: any;

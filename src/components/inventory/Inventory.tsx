@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { SFC } from 'react';
-import { Fish } from './../../models';
-import { Section, SectionHeader } from './../common';
+import { Section, SectionHeader } from 'components';
 import { InventoryList } from './InventoryList';
+import { Fish } from 'models';
 
 type InventoryProps = {
   items: Fish[];

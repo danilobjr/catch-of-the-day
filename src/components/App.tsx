@@ -1,11 +1,7 @@
 import * as React from 'react';
 import * as classNames from 'classnames';
 import { SFC } from 'react';
-import { Button } from './common';
-import { Menu } from './menu';
-import { Order } from './order';
-import { Inventory } from './inventory';
-import { AppConsumer } from './AppContext';
+import { AppConsumer, Button, Inventory, Menu, Order } from 'components';
 
 export const App: SFC = () => (
   // TODO: move this consumer to Menu, Order and Inventory?

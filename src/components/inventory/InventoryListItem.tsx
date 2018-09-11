@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { SFC } from 'react';
-import { Fish } from './../../models';
+import { Fish } from 'models';
 import { InventoryBox } from './InventoryBox';
 
 type InventoryListItemProps = {

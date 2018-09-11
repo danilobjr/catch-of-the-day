@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { Fish } from '../models';
-import { data } from '../data';
 import { v4 as generateId } from 'uuid';
+import { Fish } from 'models';
+import { data } from 'data';
 
 const initialState = {
   fishs: [] as Fish[],

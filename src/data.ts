@@ -1,5 +1,5 @@
-import { Fish } from './models';
 import { v4 as generateId } from 'uuid';
+import { Fish } from 'models';
 
 export const data = {
   fishs: [

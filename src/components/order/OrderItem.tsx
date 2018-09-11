@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { SFC } from 'react';
-import { OrderItem as OrderItemModel } from './../../models';
-import { Animation, IconButton, Price } from './../common';
+import { OrderItem as OrderItemModel } from 'models';
+import { Animation, IconButton, Price } from 'components';
 
 type OrderItemProps = {
   item: OrderItemModel;

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { SFC } from 'react';
-import { Price } from './../common';
+import { Price } from 'components';
 
 type MenuPriceProps = {
   value: number;

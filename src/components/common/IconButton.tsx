@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { SFC } from 'react';
-import { FlexBox } from './FlexBox';
+import { FlexBox } from 'components';
 
 type IconButtonProps = {
   name: string;
