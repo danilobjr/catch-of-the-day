@@ -28,8 +28,8 @@ export class App extends Component<{}, AppState> {
 
   render() {
     return (
-      <div className={classNames('app', { 'foldedUp': this.state.isFoldedUp })}>
-        <div className="content">
+      <div className={classNames('app', { 'folded-up': this.state.isFoldedUp })}>
+        <main>
           <Menu
             items={this.state.fishs}
             onClickAddToOrderButton={this.addFishItemToOrder}
@@ -46,7 +46,7 @@ export class App extends Component<{}, AppState> {
             onClickRemoveFish={this.removeFishFromInventory}
             onUpdateFishData={this.updateFish}
           />
-        </div>
+        </main>
 
         <Button
           className="fold-button"
