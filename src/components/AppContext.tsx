@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Fish } from '../models';
-import { dataSource } from '../dataSource';
+import { data } from '../data';
 import { v4 as generateId } from 'uuid';
 
 const initialState = {
@@ -26,9 +26,8 @@ export const AppConsumer = AppContext.Consumer;
 export class AppProvider extends React.Component<{}, AppProviderState> {
   readonly state = initialState;
 
-  async componentDidMount() {
-    // TODO: dataSource will be removed. Get fish from other source
-    const fishs = await dataSource.fishs.getAll();
+  componentDidMount() {
+    const fishs = data.fishs;
     const newState = { ...this.state, fishs };
     this.setState(newState);
   }

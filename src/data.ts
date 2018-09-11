@@ -1,10 +1,7 @@
-import { DataContext } from './DataContext';
-import { DataCollections } from './DataCollections';
-import { FishRepository } from './repos';
-import { Fish } from './../models';
+import { Fish } from './models';
 import { v4 as generateId } from 'uuid';
 
-const data: DataCollections = {
+export const data = {
   fishs: [
     {
       id: generateId(),
@@ -16,9 +13,3 @@ const data: DataCollections = {
     }
   ] as Fish[]
 };
-
-class DataSource implements DataContext {
-  fishs = new FishRepository('fishs', data);
-}
-
-export const dataSource = new DataSource();
