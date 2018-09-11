@@ -13,11 +13,9 @@ type MenuItemProps = {
 
 export const MenuItem: SFC<MenuItemProps> = (props) => (
   <li className="menu-item">
-    <div>
-      <MenuImage url={props.fish.imageUrl} />
-    </div>
+    <MenuImage url={props.fish.imageUrl} />
 
-    <div>
+    <div className="body">
       <Header>{props.fish.name}</Header>
       <p>{props.fish.description}</p>
 
