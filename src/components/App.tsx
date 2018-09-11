@@ -1,49 +1,20 @@
 import * as React from 'react';
 import * as classNames from 'classnames';
 import { SFC } from 'react';
-import { AppConsumer, Button, Inventory, Menu, Order } from 'components';
+import { ContextConsumer, Button, Inventory, Menu, Order } from 'components';
 
 export const App: SFC = () => (
-  // TODO: move this consumer to Menu, Order and Inventory?
-  <AppConsumer>
-    {({
-      fishs,
-      fishsInOrder,
-      isFoldedUp,
-      addFishToInventory,
-      addFishToOrder,
-      removeFishFromOrder,
-      removeFishFromInventory,
-      toggleFold,
-      updateFish,
-    }) => (
+  <ContextConsumer>
+    {({ isFoldedUp, toggleFold }) => (
       <div className={classNames('app', { 'folded-up': isFoldedUp })}>
         <main>
-          <Menu
-            items={fishs}
-            onClickAddToOrderButton={addFishToOrder}
-          />
-
-          <Order
-            items={fishsInOrder}
-            onClickRemoveItem={removeFishFromOrder}
-          />
-
-          <Inventory
-            items={fishs}
-            onClickAddFish={addFishToInventory}
-            onClickRemoveFish={removeFishFromInventory}
-            onUpdateFishData={updateFish}
-          />
+          <Menu />
+          <Order />
+          <Inventory />
         </main>
 
-        <Button
-          className="fold-button"
-          onClick={toggleFold}
-        >
-          Fold
-        </Button>
+        <Button className="fold-button" onClick={toggleFold}>Fold</Button>
       </div>
     )}
-  </AppConsumer>
+  </ContextConsumer>
 );

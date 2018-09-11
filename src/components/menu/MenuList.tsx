@@ -1,21 +1,20 @@
 import * as React from 'react';
 import { SFC } from 'react';
 import { MenuItem } from './MenuItem';
-import { Fish } from 'models';
+import { ContextConsumer } from 'components';
 
-type MenuListProps = {
-  items: Fish[];
-  onClickAddToOrderButton: (fishItem: Fish) => void;
-}
-
-export const MenuList: SFC<MenuListProps> = ({ items, onClickAddToOrderButton }) => (
-  <ul>
-    {items.map(item =>
-      <MenuItem
-        key={item.id}
-        fish={item}
-        onClickAddToOrderButton={onClickAddToOrderButton}
-      />
+export const MenuList: SFC = () => (
+  <ContextConsumer>
+    {({ fishs, addFishToOrder }) => (
+      <ul>
+        {fishs.map(fish =>
+          <MenuItem
+            key={fish.id}
+            fish={fish}
+            onClickAddToOrderButton={addFishToOrder}
+          />
+        )}
+      </ul>
     )}
-  </ul>
+  </ContextConsumer>
 );

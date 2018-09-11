@@ -1,37 +1,33 @@
 import * as React from 'react';
 import { SFC } from 'react';
-import { Animation } from 'components';
+import { Animation, Context, ContextConsumer } from 'components';
 import { OrderItem } from './OrderItem';
 import { Fish, OrderItem as OrderItemModel } from 'models';
 import { compose, groupSame, head, map } from 'utils';
 
-type OrderListProps = {
-  items: Fish[];
-  onClickRemoveItem: (fishId: string) => void;
-};
-
-export const OrderList: SFC<OrderListProps> = (props) => (
-  <ul className="order-list">
-    <Animation transitionName="animation-items">
-      {renderOrderItems(props)}
-    </Animation>
-  </ul>
+export const OrderList: SFC = () => (
+  <ContextConsumer>
+    {(context) => (
+      <ul className="order-list">
+        <Animation transitionName="animation-items">
+          {renderOrderItems(context)}
+        </Animation>
+      </ul>
+    )}
+  </ContextConsumer>
 );
 
-const renderOrderItems = (props: OrderListProps) => {
-  const { items, onClickRemoveItem } = props;
-
-  const toOrderItemModel = (fishs: Fish[]) => ({ ...head(fishs), ...{ count: fishs.length } });
+const renderOrderItems = ({ fishsInOrder, removeFishFromOrder }: Context) => {
+  const toOrderItemModel = (items: Fish[]) => ({ ...head(items), ...{ count: items.length } });
   const toOrderItemComponent = (orderItem: OrderItemModel) => (
     <OrderItem
       key={orderItem.id}
       item={orderItem}
-      onClickRemoveItem={onClickRemoveItem}
+      onClickRemoveItem={removeFishFromOrder}
     />
   );
 
   const toComponent = compose(toOrderItemComponent, toOrderItemModel);
 
-  return compose(map(toComponent), groupSame)(items);
+  return compose(map(toComponent), groupSame)(fishsInOrder);
 };
-

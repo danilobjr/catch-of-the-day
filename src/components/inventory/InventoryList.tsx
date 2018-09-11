@@ -1,32 +1,29 @@
 import * as React from 'react';
 import { SFC } from 'react';
 import { Fish } from 'models';
+import { Context, ContextConsumer } from 'components';
 import { InventoryListItem } from './InventoryListItem';
 
-type InventoryListProps = {
-  items: Fish[];
-  onClickAddFish: (fish: Fish) => void;
-  onClickRemoveFish: (fishId: string) => void;
-  onUpdateFishData: (updatedFish: Fish) => void;
-};
-
-export const InventoryList: SFC<InventoryListProps> = (props) => (
-  <ul>
-    {renderInventoryListItems(props)}
-    <InventoryListItem isAddBox onClickButton={props.onClickAddFish} />
-  </ul>
+export const InventoryList: SFC = () => (
+  <ContextConsumer>
+    {(context) => (
+      <ul>
+        {renderInventoryListItems(context)}
+        <InventoryListItem isAddBox onClickButton={context.addFishToInventory} />
+      </ul>
+    )}
+  </ContextConsumer>
 );
 
-
-const renderInventoryListItems = (props: InventoryListProps) =>
-  props.items.map(fishItem =>
+const renderInventoryListItems = (context: Context) =>
+  context.fishs.map((fish: Fish) =>
     <InventoryListItem
-      key={fishItem.id}
-      item={fishItem}
-      onClickButton={onClickRemoveFish(props)}
-      onUpdateData={props.onUpdateFishData}
+      key={fish.id}
+      item={fish}
+      onClickButton={handleClickRemoveFish(context)}
+      onUpdateData={context.updateFish}
     />
   );
 
-const onClickRemoveFish = (props: InventoryListProps) => (fish: Fish) =>
-  props.onClickRemoveFish(fish.id);
+const handleClickRemoveFish = (context: Context) => (fish: Fish) =>
+  context.removeFishFromInventory(fish.id);

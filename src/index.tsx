@@ -2,10 +2,10 @@ import 'styles';
 
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import { App, AppProvider } from 'components';
+import { App, ContextProvider } from 'components';
 
 ReactDOM.render((
-  <AppProvider>
+  <ContextProvider>
     <App />
-  </AppProvider>
+  </ContextProvider>
 ), document.getElementById('app'));

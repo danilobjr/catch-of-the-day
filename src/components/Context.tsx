@@ -9,21 +9,25 @@ const initialState = {
   isFoldedUp: false,
 };
 
-type AppProviderState = Readonly<typeof initialState>;
+type ContextProviderState = Readonly<typeof initialState>;
 
-const AppContext = React.createContext({
+const context = {
   ...initialState,
-  addFishToOrder: (fish: Fish) => null,
-  removeFishFromOrder: (id: string) => null,
-  addFishToInventory: (fish: Fish) => null,
-  removeFishFromInventory: (id: string) => null,
-  updateFish: (updatedFish: Fish) => null,
-  toggleFold: () => null,
-});
+  addFishToOrder: (fish: Fish) => null as void,
+  removeFishFromOrder: (id: string) => null as void,
+  addFishToInventory: (fish: Fish) => null as void,
+  removeFishFromInventory: (id: string) => null as void,
+  updateFish: (updatedFish: Fish) => null as void,
+  toggleFold: () => null as void,
+};
 
-export const AppConsumer = AppContext.Consumer;
+export type Context = typeof context;
 
-export class AppProvider extends React.Component<{}, AppProviderState> {
+const appContext = React.createContext(context);
+
+export const ContextConsumer = appContext.Consumer;
+
+export class ContextProvider extends React.Component<{}, ContextProviderState> {
   readonly state = initialState;
 
   componentDidMount() {
@@ -34,7 +38,7 @@ export class AppProvider extends React.Component<{}, AppProviderState> {
 
   render() {
     return (
-      <AppContext.Provider
+      <appContext.Provider
         value={{
           ...this.state,
           addFishToOrder: this.addFishToOrder,
@@ -46,7 +50,7 @@ export class AppProvider extends React.Component<{}, AppProviderState> {
         }}
       >
         {this.props.children}
-      </AppContext.Provider>
+      </appContext.Provider>
     )
   }
 
