@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { SFC } from 'react';
 import { OrderItem as OrderItemModel } from 'models';
-import { Animation, IconButton, Price } from 'components';
+import { IconButton, Price } from 'components';
 
 type OrderItemProps = {
   item: OrderItemModel;
@@ -10,11 +10,7 @@ type OrderItemProps = {
 
 export const OrderItem: SFC<OrderItemProps> = (props) => (
   <li className="order-item">
-    <div className="count">
-      <Animation transitionName="animation-count">
-        <div key={props.item.count}>{props.item.count}</div>
-      </Animation>
-    </div>
+    <div className="count">{props.item.count}</div>
     <span>lbs</span>
     <span className="fish-name">{props.item.name}</span>
     <span><Price value={props.item.price * props.item.count} /></span>
