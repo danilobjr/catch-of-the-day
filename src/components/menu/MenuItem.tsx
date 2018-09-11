@@ -23,7 +23,7 @@ export const MenuItem: SFC<MenuItemProps> = (props) => (
         showSoldOutLabel={isFishSold(props)}
         onClick={onClickAddToOrderButton(props)}
       >
-        Add to Order
+        {isFishSold(props) ? 'Sold Out!' : 'Add to Order'}
       </MenuAddToOrderButton>
 
       <MenuPrice value={props.fish.price} />

@@ -19,8 +19,7 @@ export const MenuAddToOrderButton: SFC<MenuAddToOrderButtonProps> = ({
       'sold-out': showSoldOutLabel,
     })}
   >
-    {/* TODO: move this logic to MenuItem */}
-    {showSoldOutLabel ? 'Sold Out!' : children}
+    {children}
   </Button>
 );
 
