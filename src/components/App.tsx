@@ -1,6 +1,6 @@
 import * as React from 'react';
 import * as classNames from 'classnames';
-import { Component } from 'react';
+import { Component, createContext, SFC } from 'react';
 import { v4 as generateId } from 'uuid';
 import { Button } from './common';
 import { Menu } from './menu';
@@ -17,10 +17,24 @@ const initialState = {
 
 type AppState = Readonly<typeof initialState>;
 
-export class App extends Component<{}, AppState> {
-  readonly state: AppState = initialState;
+const AppContext = createContext({
+  ...initialState,
+  addFishToOrder: (fish: Fish) => null,
+  removeFishFromOrder: (id: string) => null,
+  addFishToInventory: (fish: Fish) => null,
+  removeFishFromInventory: (id: string) => null,
+  updateFish: (updatedFish: Fish) => null,
+  toggleFold: () => null,
+});
+
+// TODO: move consumer and provider to AppContext file
+export const AppConsumer = AppContext.Consumer;
+
+export class AppProvider extends Component<{}, AppState> {
+  readonly state = initialState;
 
   async componentDidMount() {
+    // TODO: dataSource will be removed. Get fish from other source
     const fishs = await dataSource.fishs.getAll();
     const newState = { ...this.state, fishs };
     this.setState(newState);
@@ -28,37 +42,23 @@ export class App extends Component<{}, AppState> {
 
   render() {
     return (
-      <div className={classNames('app', { 'folded-up': this.state.isFoldedUp })}>
-        <main>
-          <Menu
-            items={this.state.fishs}
-            onClickAddToOrderButton={this.addFishItemToOrder}
-          />
-
-          <Order
-            items={this.state.fishsInOrder}
-            onClickRemoveItem={this.removeFishFromOrder}
-          />
-
-          <Inventory
-            items={this.state.fishs}
-            onClickAddFish={this.addNewFishToInventory}
-            onClickRemoveFish={this.removeFishFromInventory}
-            onUpdateFishData={this.updateFish}
-          />
-        </main>
-
-        <Button
-          className="fold-button"
-          onClick={this.toggleFoldPerspective}
-        >
-          Fold
-        </Button>
-      </div>
-    );
+      <AppContext.Provider
+        value={{
+          ...this.state,
+          addFishToOrder: this.addFishToOrder,
+          removeFishFromOrder: this.removeFishFromOrder,
+          addFishToInventory: this.addFishToInventory,
+          removeFishFromInventory: this.removeFishFromInventory,
+          updateFish: this.updateFish,
+          toggleFold: this.toggleFold,
+        }}
+      >
+        {this.props.children}
+      </AppContext.Provider>
+    )
   }
 
-  addFishItemToOrder = (fishItem: Fish): void => {
+  addFishToOrder = (fishItem: Fish): void => {
     const fishsInOrder = [fishItem, ...this.state.fishsInOrder];
     const newState = { ...this.state, fishsInOrder };
     this.setState(newState);
@@ -70,21 +70,12 @@ export class App extends Component<{}, AppState> {
     this.setState(newState);
   }
 
-  addNewFishToInventory = (newFish: Fish): void => {
+  addFishToInventory = (newFish: Fish): void => {
     const tempId = generateId();
     newFish.id = tempId;
     const fishs = [...this.state.fishs, newFish];
     const newState = { ...this.state, fishs };
     this.setState(newState);
-
-    dataSource.fishs.add(newFish).then(definitiveDbId => {
-      const others = this.state.fishs.filter(fish => fish.id !== tempId);
-      const updatedFish = { ...newFish, ...{ id: definitiveDbId } };
-      const fishs = [...others, updatedFish];
-
-      const newState = { ...this.state, fishs };
-      this.setState(newState);
-    });
   }
 
   removeFishFromInventory = (fishId: string): void => {
@@ -93,8 +84,6 @@ export class App extends Component<{}, AppState> {
 
     const newState = { ...this.state, fishs };
     this.setState(newState);
-
-    dataSource.fishs.remove(fishId);
   }
 
   updateFish = (updatedFish: Fish): void => {
@@ -117,9 +106,54 @@ export class App extends Component<{}, AppState> {
     this.setState(newState);
   }
 
-  toggleFoldPerspective = () => {
+  toggleFold = () => {
     const isFoldedUp = !this.state.isFoldedUp;
     const newState = { ...this.state, isFoldedUp };
     this.setState(newState);
   }
 }
+
+export const App: SFC = () => (
+  // TODO: move this consumer to Menu, Order and Inventory?
+  <AppConsumer>
+    {({
+      fishs,
+      fishsInOrder,
+      isFoldedUp,
+      addFishToInventory,
+      addFishToOrder,
+      removeFishFromOrder,
+      removeFishFromInventory,
+      toggleFold,
+      updateFish,
+    }) => (
+      <div className={classNames('app', { 'folded-up': isFoldedUp })}>
+        <main>
+          <Menu
+            items={fishs}
+            onClickAddToOrderButton={addFishToOrder}
+          />
+
+          <Order
+            items={fishsInOrder}
+            onClickRemoveItem={removeFishFromOrder}
+          />
+
+          <Inventory
+            items={fishs}
+            onClickAddFish={addFishToInventory}
+            onClickRemoveFish={removeFishFromInventory}
+            onUpdateFishData={updateFish}
+          />
+        </main>
+
+        <Button
+          className="fold-button"
+          onClick={toggleFold}
+        >
+          Fold
+        </Button>
+      </div>
+    )}
+  </AppConsumer>
+);

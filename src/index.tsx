@@ -2,6 +2,10 @@ import './styles';
 
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import { App } from './components/App';
+import { App, AppProvider } from './components/App';
 
-ReactDOM.render(<App />, document.getElementById('app'));
+ReactDOM.render((
+  <AppProvider>
+    <App />
+  </AppProvider>
+), document.getElementById('app'));
