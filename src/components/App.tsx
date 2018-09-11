@@ -18,3 +18,5 @@ export const App: SFC = () => (
     )}
   </ContextConsumer>
 );
+
+App.displayName = 'App';

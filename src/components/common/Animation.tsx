@@ -15,3 +15,5 @@ export const Animation: SFC<AnimationProps> = ({ children, ...otherProps }) => (
     {children}
   </ReactCssTransitionGroup>
 );
+
+Animation.displayName = 'Animation';

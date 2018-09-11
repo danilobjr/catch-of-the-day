@@ -14,6 +14,8 @@ export const OrderTotal: SFC = () => (
   </ContextConsumer>
 );
 
+OrderTotal.displayName = 'OrderTotal';
+
 const sumPrices = (fishs: Fish[]) => {
   const initialValue = 0;
 

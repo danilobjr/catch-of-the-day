@@ -13,6 +13,8 @@ export const IconButton: SFC<IconButtonProps> = (props) => (
   </FlexBox>
 );
 
+IconButton.displayName = 'IconButton';
+
 const onClick = (props: IconButtonProps) => (event: any): void => {
   props.onClick(event);
 };

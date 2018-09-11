@@ -13,3 +13,5 @@ export const MenuImage: SFC<MenuImageProps> = (props) => (
   <figure {...props} className="menu-image" style={styles(props)} />
 );
 
+MenuImage.displayName = 'MenuImage';
+

@@ -10,3 +10,5 @@ export const Inventory: SFC = () => (
   </Section>
 );
 
+Inventory.displayName = 'Inventory';
+

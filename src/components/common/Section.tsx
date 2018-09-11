@@ -6,3 +6,5 @@ type SectionProps = HTMLAttributes<HTMLElement>;
 export const Section: SFC<SectionProps> = ({ children, ...otherProps }) => (
   <section {...otherProps}>{children}</section>
 );
+
+Section.displayName = 'Section';

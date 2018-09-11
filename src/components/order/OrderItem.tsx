@@ -18,6 +18,8 @@ export const OrderItem: SFC<OrderItemProps> = (props) => (
   </li>
 );
 
+OrderItem.displayName = 'OrderItem';
+
 const onClickRemoveItem = ({ item, onClickRemoveItem }: OrderItemProps) => () =>
   onClickRemoveItem(item.id);
 

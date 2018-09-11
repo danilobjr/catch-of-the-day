@@ -9,3 +9,5 @@ export const SectionHeader: SFC<SectionHeaderProps> = ({ children, ...otherProps
     <Header>{children}</Header>
   </header>
 );
+
+SectionHeader.displayName = 'SectionHeader';

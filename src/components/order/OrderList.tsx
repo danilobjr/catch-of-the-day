@@ -17,6 +17,8 @@ export const OrderList: SFC = () => (
   </ContextConsumer>
 );
 
+OrderList.displayName = 'OrderList';
+
 const renderOrderItems = ({ fishsInOrder, removeFishFromOrder }: Context) => {
   const toOrderItemModel = (items: Fish[]) => ({ ...head(items), ...{ count: items.length } });
   const toOrderItemComponent = (orderItem: OrderItemModel) => (

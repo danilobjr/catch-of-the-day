@@ -31,6 +31,8 @@ export const MenuItem: SFC<MenuItemProps> = (props) => (
   </li>
 );
 
+MenuItem.displayName = 'MenuItem';
+
 const isFishSold = ({ fish }: MenuItemProps) => !fish.available;
 
 const onClickAddToOrderButton = (props: MenuItemProps) => () => {

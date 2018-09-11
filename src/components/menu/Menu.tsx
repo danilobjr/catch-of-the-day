@@ -14,3 +14,5 @@ export const Menu: SFC = () => (
   </Section>
 );
 
+Menu.displayName = 'Menu';
+

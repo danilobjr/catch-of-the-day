@@ -12,6 +12,7 @@ export const MenuAddToOrderButton: SFC<MenuAddToOrderButtonProps> = ({
   className,
   showSoldOutLabel,
   ...otherProps }) => (
+
   <Button
     {...otherProps}
     className={classNames('add-to-order', className, {
@@ -22,3 +23,5 @@ export const MenuAddToOrderButton: SFC<MenuAddToOrderButtonProps> = ({
     {showSoldOutLabel ? 'Sold Out!' : children}
   </Button>
 );
+
+MenuAddToOrderButton.displayName = 'MenuAddToOrderButton';

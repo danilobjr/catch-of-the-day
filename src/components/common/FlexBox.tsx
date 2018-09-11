@@ -12,3 +12,5 @@ export const FlexBox: SFC<FlexBoxProps> = ({ children, className, ...otherProps 
     {children}
   </div>
 );
+
+FlexBox.displayName = 'FlexBox';

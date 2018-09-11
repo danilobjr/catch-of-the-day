@@ -11,3 +11,5 @@ export const Order: SFC = () => (
     <OrderTotal />
   </Section>
 );
+
+Order.displayName = 'Order';

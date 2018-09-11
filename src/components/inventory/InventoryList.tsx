@@ -15,6 +15,8 @@ export const InventoryList: SFC = () => (
   </ContextConsumer>
 );
 
+InventoryList.displayName = 'InventoryList';
+
 const renderInventoryListItems = (context: Context) =>
   context.fishs.map((fish: Fish) =>
     <InventoryListItem

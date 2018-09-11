@@ -9,3 +9,5 @@ type MenuPriceProps = {
 export const MenuPrice: SFC<MenuPriceProps> = (props) => (
   <Price className="menu-price" value={props.value} />
 );
+
+MenuPrice.displayName = 'MenuPrice';
