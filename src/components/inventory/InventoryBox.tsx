@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Component } from 'react';
-import { Button, FlexBox } from 'components';
+import { Button } from 'components';
 import { Fish, FishFactory } from 'models';
 
 type InventoryBoxProps = {
@@ -36,7 +36,7 @@ export class InventoryBox extends Component<InventoryBoxProps, InventoryBoxState
     return (
       <div className="inventory-box">
         <div className="fields">
-          <FlexBox>
+          <div className="row">
             <input type="text" placeholder="Fish Name" value={fishItem.name} onChange={(e) => this.updateStateOnInputChange('name', e.target.value)} />
             <input type="number" placeholder="Fish Price" value={fishItem.price} onChange={(e) => this.updateStateOnInputChange('price', parseInt(e.target.value, 10))} />
 
@@ -47,20 +47,13 @@ export class InventoryBox extends Component<InventoryBoxProps, InventoryBoxState
               <option value="fresh">Fresh!</option>
               <option value="sold">Sold Out!</option>
             </select>
-          </FlexBox>
+          </div>
 
-          <FlexBox>
-            <textarea rows={2} placeholder="Description" value={fishItem.description} onChange={(e) => this.updateStateOnInputChange('description', e.target.value)} />
-          </FlexBox>
-
-          <FlexBox>
-            <input type="url" placeholder="Url to Image" value={fishItem.imageUrl} onChange={(e) => this.updateStateOnInputChange('imageUrl', e.target.value)} />
-          </FlexBox>
+          <textarea rows={2} placeholder="Description" value={fishItem.description} onChange={(e) => this.updateStateOnInputChange('description', e.target.value)} />
+          <input type="url" placeholder="Url to Image" value={fishItem.imageUrl} onChange={(e) => this.updateStateOnInputChange('imageUrl', e.target.value)} />
         </div>
 
-        <FlexBox>
-          <Button onClick={this.onClickButton}>{this.props.buttonText}</Button>
-        </FlexBox>
+        <Button onClick={this.onClickButton}>{this.props.buttonText}</Button>
       </div>
     );
   }
