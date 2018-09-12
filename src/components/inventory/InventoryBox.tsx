@@ -1,18 +1,19 @@
 import * as React from 'react';
-import { Component } from 'react';
+import { PureComponent } from 'react';
 import { Button } from 'components';
 import { Fish, FishFactory } from 'models';
+import { compose, prop, toInt, equals, defaultTo } from 'utils';
 
 type InventoryBoxProps = {
-  fishItem?: Fish;
   buttonText?: string;
+  fishItem?: Fish;
   onClickButton: (newFishData: Fish) => void;
   onUpdateData?: (fishUpdated: Fish) => void;
 };
 
 type InventoryBoxState = Readonly<Fish>;
 
-export class InventoryBox extends Component<InventoryBoxProps, InventoryBoxState> {
+export class InventoryBox extends PureComponent<InventoryBoxProps, InventoryBoxState> {
   readonly state: InventoryBoxState;
 
   constructor(props: InventoryBoxProps) {
@@ -21,50 +22,88 @@ export class InventoryBox extends Component<InventoryBoxProps, InventoryBoxState
     this.state = this.props.fishItem;
   }
 
-  static get defaultProps() {
-    const defaultProps = {
-      fishItem: FishFactory.create(),
-      buttonText: '+ Add Item'
-    };
-
-    return defaultProps;
+  static defaultProps: Partial<InventoryBoxProps> = {
+    buttonText: '+ Add Item',
+    fishItem: FishFactory.create(),
+    onUpdateData: () => null,
   }
 
   render() {
     const fishItem = this.state;
+    console.log(fishItem.price);
 
     return (
       <div className="inventory-box">
         <div className="fields">
           <div className="row">
-            <input type="text" placeholder="Fish Name" value={fishItem.name} onChange={(e) => this.updateStateOnInputChange('name', e.target.value)} />
-            <input type="number" placeholder="Fish Price" value={fishItem.price} onChange={(e) => this.updateStateOnInputChange('price', parseInt(e.target.value, 10))} />
+            <input
+              type="text"
+              placeholder="Fish Name"
+              value={fishItem.name}
+              onChange={this.handleTargetValueChange('name')}
+            />
+
+            <input
+              type="number"
+              placeholder="Fish Price"
+              value={fishItem.price}
+              onChange={this.handlePriceChange}
+            />
 
             <select
               value={this.state.available ? 'fresh' : 'sold'}
-              onChange={(e) => this.updateStateOnInputChange('available', e.target.value === 'fresh' ? true : false)}
+              onChange={this.handleAvailabilityChange}
             >
               <option value="fresh">Fresh!</option>
               <option value="sold">Sold Out!</option>
             </select>
           </div>
 
-          <textarea rows={2} placeholder="Description" value={fishItem.description} onChange={(e) => this.updateStateOnInputChange('description', e.target.value)} />
-          <input type="url" placeholder="Url to Image" value={fishItem.imageUrl} onChange={(e) => this.updateStateOnInputChange('imageUrl', e.target.value)} />
+          <textarea
+            rows={2}
+            placeholder="Description"
+            value={fishItem.description}
+            onChange={this.handleTargetValueChange('description')}
+          />
+
+          <input
+            type="url"
+            placeholder="Url to Image"
+            value={fishItem.imageUrl}
+            onChange={this.handleTargetValueChange('imageUrl')}
+          />
         </div>
 
-        <Button onClick={this.onClickButton}>{this.props.buttonText}</Button>
+        <Button onClick={this.handleClick}>{this.props.buttonText}</Button>
       </div>
     );
   }
 
-  updateStateOnInputChange(propertyName: string, value: any): void {
+  handleChange = (propertyName: string) => (value: string | number) => {
     const newState = { ...this.state, ...{ [propertyName]: value } };
     this.setState(newState);
     this.props.onUpdateData && this.props.onUpdateData(newState);
   }
 
-  onClickButton = (): void => {
+  handleTargetValueChange = (statePropName: string) => compose(
+    this.handleChange(statePropName),
+    prop('target.value'),
+  ) as any;
+
+  handlePriceChange = compose(
+    this.handleChange('price'),
+    defaultTo(0),
+    toInt,
+    prop('target.value'),
+  ) as any;
+
+  handleAvailabilityChange = compose(
+    this.handleChange('available'),
+    equals('fresh'),
+    prop('target.value'),
+  ) as any;
+
+  handleClick = (): void => {
     this.props.onClickButton(this.state);
     this.setState(FishFactory.create());
   }
