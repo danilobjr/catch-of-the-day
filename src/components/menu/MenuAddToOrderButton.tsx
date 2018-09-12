@@ -24,3 +24,7 @@ export const MenuAddToOrderButton: SFC<MenuAddToOrderButtonProps> = ({
 );
 
 MenuAddToOrderButton.displayName = 'MenuAddToOrderButton';
+
+MenuAddToOrderButton.defaultProps = {
+  showSoldOutLabel: false,
+};

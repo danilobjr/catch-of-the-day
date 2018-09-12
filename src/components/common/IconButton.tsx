@@ -14,6 +14,10 @@ export const IconButton: SFC<IconButtonProps> = (props) => (
 
 IconButton.displayName = 'IconButton';
 
+IconButton.defaultProps = {
+  onClick: () => null,
+};
+
 const onClick = (props: IconButtonProps) => (event: any): void => {
   props.onClick(event);
 };

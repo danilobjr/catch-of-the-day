@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { SFC } from 'react';
-import { Fish } from 'models';
+import { Fish, FishFactory } from 'models';
 import { InventoryBox } from './InventoryBox';
 
 type InventoryListItemProps = {
@@ -15,6 +15,12 @@ export const InventoryListItem: SFC<InventoryListItemProps> = (props) => (
 );
 
 InventoryListItem.displayName = 'InventoryListItem';
+
+InventoryListItem.defaultProps = {
+  item: FishFactory.create(),
+  isAddBox: false,
+  onUpdateData: () => null,
+};
 
 const renderInventoryBox = (props: InventoryListItemProps) =>
   props.isAddBox
