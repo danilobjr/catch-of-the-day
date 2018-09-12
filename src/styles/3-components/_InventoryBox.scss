@@ -1,7 +1,21 @@
 .inventory-box {
+  display: flex;
+  flex-direction: column;
+
   .fields {
     border-top: $border-base;
     border-left: $border-base;
+
+    display: flex;
+    flex-direction: column;
+
+    .row {
+      display: flex;
+    }
+
+    .row > * {
+      flex: 1;
+    }
 
     input, select, textarea {
       border-top: none;
