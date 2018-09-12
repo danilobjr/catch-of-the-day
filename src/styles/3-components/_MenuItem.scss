@@ -1,22 +1,30 @@
 .menu-item {
+  display: flex;
+  padding: 15px 0;
+  margin-bottom: 5px;
+  border-top: $border-base;
+  border-bottom: $border-base;
+  border-bottom-width: 2px;
+
+  & > .menu-image {
+    margin-right: 10px;
+  }
+
+  & > .body {
+    position: relative;
+
+    flex: 1;
     display: flex;
-    padding: 15px 0;
-    margin-bottom: 5px;    
-    border-top: $border-base;
-    border-bottom: $border-base;
-    border-bottom-width: 2px;
-    
-    & > div:first-of-type {
-        height: 120px;
-        margin-right: 10px;
+    flex-direction: column;
+    align-items: flex-start;
+
+    h2 {
+      margin: 0;
     }
-    
-    & > div:last-of-type {
-        flex: 1;
-        position: relative;
-        
-        & > * {
-            margin: 0 0 10px 0;
-        }
+
+    p {
+      margin: 10px 0 0 0;
+      flex: 1;
     }
+  }
 }

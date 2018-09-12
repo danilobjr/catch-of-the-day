@@ -1,8 +1,11 @@
-import './styles';
-import './extensions';
+import 'styles';
 
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import { App } from './components/App';
+import { App, ContextProvider } from 'components';
 
-ReactDOM.render(<App />, document.getElementById('app'));
+ReactDOM.render((
+  <ContextProvider>
+    <App />
+  </ContextProvider>
+), document.getElementById('app'));

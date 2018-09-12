@@ -1,26 +1,25 @@
 import * as React from 'react';
-import { IFish } from './../../models';
-import { Price } from './../common';
+import { SFC } from 'react';
+import { Price, ContextConsumer } from 'components';
+import { Fish } from 'models';
 
-interface IProps {
-    items: IFish[];
-}
+export const OrderTotal: SFC = () => (
+  <ContextConsumer>
+    {({ fishs }) => (
+      <div className="order-total">
+        <span className="total">Total:</span>
+        <Price value={sumPrices(fishs)} />
+      </div>
+    )}
+  </ContextConsumer>
+);
 
-export class OrderTotal extends React.Component<IProps, any> {
-    render() {
-        return (
-            <div className="order-total">
-                <span className="total">Total:</span>
-                <Price value={this.sumPrices()} />
-            </div>
-        );
-    }
-    
-    sumPrices(): number {
-        const initialValue = 0;
-        
-        return this.props.items
-            .map(fishItem => fishItem.price)
-            .reduce((accumulator: number, current: number) => accumulator + current, initialValue);
-    }
-}
+OrderTotal.displayName = 'OrderTotal';
+
+const sumPrices = (fishs: Fish[]) => {
+  const initialValue = 0;
+
+  return fishs
+    .map(fishItem => fishItem.price)
+    .reduce((accumulator: number, current: number) => accumulator + current, initialValue);
+};

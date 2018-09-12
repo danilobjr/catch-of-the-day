@@ -1,38 +1,35 @@
 import * as React from 'react';
-import { Animation } from './../common';
+import { SFC } from 'react';
+import { Animation, Context, ContextConsumer } from 'components';
 import { OrderItem } from './OrderItem';
-import { IFish, IOrderItem } from './../../models';
-import { compose, groupSame, map, head } from './../../utils/functions';
+import { Fish, OrderItem as OrderItemModel } from 'models';
+import { compose, groupSame, head, map } from 'utils';
 
-interface IProps {
-  items: IFish[];
-  onClickRemoveItem: (fishId: string) => void;
-}
-
-export class OrderList extends React.Component<IProps, any> {
-  render() {
-    return (
+export const OrderList: SFC = () => (
+  <ContextConsumer>
+    {(context) => (
       <ul className="order-list">
         <Animation transitionName="animation-items">
-          {this.renderOrderItems(this.props.items)}
+          {renderOrderItems(context)}
         </Animation>
       </ul>
-    );
-  }
+    )}
+  </ContextConsumer>
+);
 
-  renderOrderItems(items: IFish[]) {
-    const { onClickRemoveItem } = this.props;
+OrderList.displayName = 'OrderList';
 
-    const toOrderItemModel = (fishs: IFish[]): IOrderItem => Object.assign({}, head(fishs), { count: fishs.length }) as IOrderItem
-    const toOrderItemComponent = (orderItem: IOrderItem): JSX.Element =>
-      <OrderItem
-        key={orderItem.id}
-        item={orderItem}
-        onClickRemoveItem={onClickRemoveItem}
-      />
+const renderOrderItems = ({ fishsInOrder, removeFishFromOrder }: Context) => {
+  const toOrderItemModel = (items: Fish[]) => ({ ...head(items), ...{ count: items.length } });
+  const toOrderItemComponent = (orderItem: OrderItemModel) => (
+    <OrderItem
+      key={orderItem.id}
+      item={orderItem}
+      onClickRemoveItem={removeFishFromOrder}
+    />
+  );
 
-    const toComponent = compose(toOrderItemComponent, toOrderItemModel);
+  const toComponent = compose(toOrderItemComponent, toOrderItemModel);
 
-    return compose(map(toComponent), groupSame)(items);
-  }
-}
+  return compose(map(toComponent), groupSame)(fishsInOrder);
+};

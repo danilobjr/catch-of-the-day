@@ -2,7 +2,7 @@
   height: 90vh;
   max-width: 1500px;
 
-  > .content {
+  > main {
     @include display(flex);
     height: inherit;
     perspective: 1000px;
@@ -38,13 +38,8 @@
     }
   }
 
-  &.foldedUp {
-    .fold-button {
-      color: white;
-      background-color: $black;
-    }
-
-    > .content {
+  &.folded-up {
+    > main {
       > section:first-child {
         transform: rotateY(5deg);
       }
@@ -56,6 +51,11 @@
       > section:last-child {
         transform: rotateY(10deg) translateX(-2%);
       }
+    }
+
+    .fold-button {
+      color: white;
+      background-color: $black;
     }
   }
 }

@@ -1,23 +1,18 @@
 import * as React from 'react';
-import { Section } from './../common';
-import { MenuHeader } from './MenuHeader';
+import { SFC } from 'react';
+import { Section } from 'components';
 import { MenuList } from './MenuList';
-import { IFish } from './../../models';
 
-interface IProps {
-    items: IFish[];
-    onClickAddToOrderButton: (fishItem: IFish) => void;
-}
+export const Menu: SFC = () => (
+  <Section>
+    <header className="menu-header">
+      <h1>Catch of the Day</h1>
+      <h3><span>Fresh seafood market</span></h3>
+    </header>
 
-export class Menu extends React.Component<IProps, any> {
-    render() {
-        const { items, onClickAddToOrderButton } = this.props;
-        
-        return (
-            <Section>
-                <MenuHeader />
-                <MenuList items={items} onClickAddToOrderButton={onClickAddToOrderButton} />
-            </Section>
-        );
-    }
-}
+    <MenuList />
+  </Section>
+);
+
+Menu.displayName = 'Menu';
+

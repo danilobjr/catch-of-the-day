@@ -1,27 +1,29 @@
 import * as React from 'react';
+import { SFC } from 'react';
+import { Fish } from 'models';
 import { InventoryBox } from './InventoryBox';
-import { IFish } from './../../models';
 
-interface IProps {
-    item?: IFish;
-    isAddBox?: boolean;
-    onClickButton: (fish: IFish) => void;
-    onUpdateData?: (updatedFish: IFish) => void;
-}
+type InventoryListItemProps = {
+  item?: Fish;
+  isAddBox?: boolean;
+  onClickButton: (fish: Fish) => void;
+  onUpdateData?: (updatedFish: Fish) => void;
+};
 
-export class InventoryListItem extends React.Component<IProps, any> {
-    render() {
-        return <li className="inventory-list-item">{this.renderInventoryBox()}</li>;
-    }
-    
-    renderInventoryBox(): JSX.Element {
-        return this.props.isAddBox 
-            ? <InventoryBox onClickButton={this.props.onClickButton} /> 
-            : <InventoryBox 
-                buttonText="Remove Fish" 
-                fishItem={this.props.item} 
-                onClickButton={this.props.onClickButton} 
-                onUpdateData={this.props.onUpdateData}
-              />;
-    }
-}
+export const InventoryListItem: SFC<InventoryListItemProps> = (props) => (
+  <li className="inventory-list-item">{renderInventoryBox(props)}</li>
+);
+
+InventoryListItem.displayName = 'InventoryListItem';
+
+const renderInventoryBox = (props: InventoryListItemProps) =>
+  props.isAddBox
+    ? <InventoryBox onClickButton={props.onClickButton} />
+    : (
+      <InventoryBox
+        buttonText="Remove Fish"
+        fishItem={props.item}
+        onClickButton={props.onClickButton}
+        onUpdateData={props.onUpdateData}
+      />
+    );

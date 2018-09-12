@@ -1,21 +1,32 @@
 import * as React from 'react';
-import { Currency } from './Currency';
+import * as classNames from 'classnames';
+import { HTMLAttributes, SFC } from 'react';
+import { format } from 'currency-formatter';
 
-interface IProps {
-    value: number;
-    className?: string;
-}
+type ChangedProps = {
+  value?: any;
+} & HTMLAttributes<HTMLSpanElement>;
 
-export class Price extends React.Component<IProps, any> {
-    render() {
-        return <Currency className={this.getClassName()} value={this.props.value} />;
-    }
-    
-    getClassName(): string {
-        let classes = ['price'];
-        
-        this.props.className && classes.push(this.props.className);
-        
-        return classes.join(' ');
-    }
-}
+type PriceProps = {
+  currency?: string;
+  value: number;
+} & ChangedProps;
+
+export const Price: SFC<PriceProps> = ({ className, value, ...otherProps }) => (
+  <span
+    {...otherProps}
+    className={classNames('price', className)}
+  >
+    {formatValue({ value, ...otherProps })}
+  </span>
+);
+
+Price.displayName = 'Price';
+
+Price.defaultProps = {
+  value: 0,
+  currency: 'USD'
+};
+
+const formatValue = ({ value, currency }: PriceProps) =>
+  format(value, { code: currency });

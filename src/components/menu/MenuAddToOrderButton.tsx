@@ -1,23 +1,26 @@
 import * as React from 'react';
-import { Component } from 'react';
-import { Button, ButtonProps } from './../common';
+import * as classNames from 'classnames';
+import { SFC } from 'react';
+import { Button, ButtonProps } from 'components';
 
-interface IProps extends ButtonProps {
+type MenuAddToOrderButtonProps = {
   showSoldOutLabel?: boolean;
-}
+} & ButtonProps;
 
-export class MenuAddToOrderButton extends Component<IProps, {}> {
-  render() {
-    return <Button {...this.props} className={this.renderCssClasses()}>{this.renderText()}</Button>
-  };
+export const MenuAddToOrderButton: SFC<MenuAddToOrderButtonProps> = ({
+  children,
+  className,
+  showSoldOutLabel,
+  ...otherProps }) => (
 
-  renderCssClasses(): string {
-    const isSoldClass = this.props.showSoldOutLabel ? 'sold-out' : '';
-    const cssCLasses = ['add-to-order', isSoldClass, this.props.className];
-    return cssCLasses.join(' ');
-  }
+  <Button
+    {...otherProps}
+    className={classNames('add-to-order', className, {
+      'sold-out': showSoldOutLabel,
+    })}
+  >
+    {children}
+  </Button>
+);
 
-  renderText() {
-    return this.props.showSoldOutLabel ? 'Sold Out!' : this.props.children;
-  }
-}
+MenuAddToOrderButton.displayName = 'MenuAddToOrderButton';

@@ -1,26 +1,22 @@
 import * as React from 'react';
+import { SFC } from 'react';
 import { MenuItem } from './MenuItem';
-import { IFish } from './../../models';
+import { ContextConsumer } from 'components';
 
-interface IProps {
-    items: IFish[];
-    onClickAddToOrderButton: (fishItem: IFish) => void;
-}
+export const MenuList: SFC = () => (
+  <ContextConsumer>
+    {({ fishs, addFishToOrder }) => (
+      <ul>
+        {fishs.map(fish =>
+          <MenuItem
+            key={fish.id}
+            fish={fish}
+            onClickAddToOrderButton={addFishToOrder}
+          />
+        )}
+      </ul>
+    )}
+  </ContextConsumer>
+);
 
-export class MenuList extends React.Component<IProps, any> {
-    render() {
-        return <ul>{this.renderMenuItems()}</ul>;
-    }
-    
-    renderMenuItems() {
-        const { items, onClickAddToOrderButton } = this.props;
-        
-        return items.map(item => 
-            <MenuItem 
-                key={item.id} 
-                fish={item} 
-                onClickAddToOrderButton={onClickAddToOrderButton} 
-            />
-        );
-    }
-}
+MenuList.displayName = 'MenuList';

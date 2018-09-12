@@ -1,27 +1,14 @@
 import * as React from 'react';
-import { Section, SectionHeader } from './../common';
+import { SFC } from 'react';
+import { Section, SectionHeader } from 'components';
 import { InventoryList } from './InventoryList';
-import { IFish } from './../../models';
 
-interface IProps {
-    items: IFish[];
-    onClickAddFish: (fish: IFish) => void;
-    onClickRemoveFish: (fishId: string) => void;
-    onUpdateFishData: (updatedFish: IFish) => void;
-}
+export const Inventory: SFC = () => (
+  <Section>
+    <SectionHeader>Inventory</SectionHeader>
+    <InventoryList />
+  </Section>
+);
 
-export class Inventory extends React.Component<IProps, any> {
-    render() {
-        return (
-            <Section>
-                <SectionHeader>Inventory</SectionHeader>
-                <InventoryList 
-                    items={this.props.items}
-                    onClickAddFish={this.props.onClickAddFish}
-                    onClickRemoveFish={this.props.onClickRemoveFish}
-                    onUpdateFishData={this.props.onUpdateFishData}
-                />
-            </Section>
-        );
-    }
-}
+Inventory.displayName = 'Inventory';
+

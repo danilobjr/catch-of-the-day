@@ -8,6 +8,13 @@ const commonConfig = {
     filename: 'app.bundle.js',
   },
   resolve: {
+    alias: {
+      components: path.resolve(__dirname, 'src/components'),
+      data: path.resolve(__dirname, 'src/data'),
+      models: path.resolve(__dirname, 'src/models'),
+      styles: path.resolve(__dirname, 'src/styles'),
+      utils: path.resolve(__dirname, 'src/utils'),
+    },
     extensions: ['.wasm', '.js', '.json', '.ts', '.tsx', '.js', '.scss'],
   },
   module: {
@@ -39,7 +46,7 @@ if (target === 'dev' || !target) {
     },
   };
 
-  module.exports = Object.assign({}, commonConfig, devConfig);
+  module.exports = { ...commonConfig, ...devConfig };
 } else {
   module.exports = commonConfig;
 }
