@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Component } from 'react';
+import { PureComponent } from 'react';
 import { Button } from 'components';
 import { Fish, FishFactory } from 'models';
 import { compose, prop, toInt, equals, defaultTo } from 'utils';
@@ -13,8 +13,7 @@ type InventoryBoxProps = {
 
 type InventoryBoxState = Readonly<Fish>;
 
-// TODO: turn it in a PureComponent
-export class InventoryBox extends Component<InventoryBoxProps, InventoryBoxState> {
+export class InventoryBox extends PureComponent<InventoryBoxProps, InventoryBoxState> {
   readonly state: InventoryBoxState;
 
   constructor(props: InventoryBoxProps) {
